@@ -1,0 +1,1122 @@
+/* =========================================================
+   PALETA MODO CLARO (valores por defecto)
+   ========================================================= */
+:root {
+  --blue-main:  #173457; /* barras, header, botones principales */
+  --blue-soft:  #3D5477; /* detalles, hover, bordes */
+  --bg-light:   #ffffff; /* fondo */
+  --text-dark:  #173457; /* títulos */
+
+  /* Tokens genéricos */
+  --bg-page: var(--bg-light);
+  --bg-card: #f3f4f6;
+  --text-main: var(--text-dark);
+  --text-muted: #6b7280;
+  --border-subtle: #e5e7eb;
+
+  --btn-primary-from: var(--blue-soft);
+  --btn-primary-to:   var(--blue-main);
+  --btn-secondary-bg: #f3f4f6;
+  --chip-bg: #e5edff;
+  --chip-border: var(--blue-soft);
+
+  --radius-lg: 18px;
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.22);
+}
+
+/* =========================================================
+   PALETA MODO OSCURO (cuando el body tiene clase .dark)
+   ========================================================= */
+body.dark {
+  --bg-body:      #020617;  /* fondo general */
+  --bg-elevated:  #050B16;  /* secciones grandes */
+  --bg-card:      #081325;  /* tarjetas */
+  --brand-blue:       #173457;
+  --brand-blue-soft:  #3D5477;
+  --text-main:   #F9FAFB;
+  --text-muted:  #9CA3AF;
+  --text-invert: #FFFFFF;
+  --border-subtle: #1E293B;
+  --btn-primary-from: #3D5477;
+  --btn-primary-to:   #173457;
+  --btn-secondary-bg: #0B1220;
+  --chip-bg:     #0B1220;
+  --chip-border: #3D5477;
+  --bg-page: var(--bg-body);
+}
+
+/* =========================================================
+   BASE GLOBAL (reset sencillo + tipografía)
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-main);
+}
+
+/* =========================================================
+   HEADER PRINCIPAL (logo, menú navegación, modo oscuro)
+   ========================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(to bottom, rgba(2,6,23,.92), rgba(2,6,23,0.85));
+  color: #f9fafb;
+  border-bottom: 1px solid rgba(148,163,184,.4);
+  backdrop-filter: blur(16px);
+}
+
+.header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.logo-text {
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+
+.main-nav {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #e5e7eb;
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: background .2s, color .2s, transform .15s;
+}
+
+.main-nav a:hover {
+  background: rgba(148,163,184,.2);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-toggle-theme {
+  border: 1px solid rgba(148,163,184,.5);
+  background: rgba(15,23,42,.7);
+  color: #e5e7eb;
+  border-radius: 999px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-toggle-theme:hover {
+  background: rgba(30,64,175,.9);
+}
+
+/* Punto secreto de acceso al admin */
+.admin-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  display: inline-block;
+}
+
+/* =========================================================
+   LAYOUT PÁGINA PRINCIPAL (index)
+   ========================================================= */
+.page-main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.section-empty {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(148,163,184,.25);
+}
+
+.section-empty h1,
+.section-empty h2 {
+  margin: 0 0 4px;
+}
+
+.section-empty p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* =========================================================
+   CHIPS / BADGES Y BOTONES GENÉRICOS
+   ========================================================= */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.btn-primary,
+.btn-primary-outline,
+.btn-secondary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--btn-primary-from), var(--btn-primary-to));
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary-outline {
+  background: transparent;
+  border: 1px solid rgba(148,163,184,.6);
+  color: var(--text-main);
+}
+
+.btn-secondary {
+  background: var(--btn-secondary-bg);
+  color: #e5e7eb;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px dashed rgba(148,163,184,.6);
+}
+
+/* =========================================================
+   CAMPOS DE FORMULARIO (admin + futuro contacto)
+   ========================================================= */
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row > label {
+  flex: 1;
+}
+
+label {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="password"],
+select,
+textarea {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(15,23,42,.03);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* =========================================================
+   FOOTER PRINCIPAL
+   ========================================================= */
+.site-footer {
+  border-top: 1px solid rgba(148,163,184,.35);
+  padding: 14px 16px;
+  background: #020617;
+}
+
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-logo img {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.footer-logo span {
+  font-size: 13px;
+  color: #e5e7eb;
+}
+
+.site-footer small {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   PÁGINAS DE ADMIN – LOGIN
+   ========================================================= */
+.admin-body {
+  background: radial-gradient(circle at top, #020617, #020617);
+  color: #e5e7eb;
+}
+
+.admin-login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 360px;
+  background: #020617;
+  border-radius: 18px;
+  padding: 20px 18px 22px;
+  border: 1px solid rgba(148,163,184,.35);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-login-card h1 {
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+.form-error {
+  background: rgba(239,68,68,.1);
+  color: #fecaca;
+  border-radius: 10px;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.btn-ghost.small {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+/* =========================================================
+   PÁGINAS DE ADMIN – LAYOUT PANEL, TABLAS, GALERÍA
+   ========================================================= */
+.admin-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px minmax(0,1fr);
+}
+
+.admin-sidebar {
+  background: #020617;
+  border-right: 1px solid rgba(148,163,184,.35);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-profile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.admin-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.admin-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.admin-name {
+  margin: 0;
+  font-size: 14px;
+}
+
+.admin-email {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.admin-nav a {
+  padding: 6px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #e5e7eb;
+}
+
+.admin-nav a.active {
+  background: rgba(59,130,246,.16);
+}
+
+.logout-link {
+  margin-top: auto;
+  font-size: 12px;
+  color: #fca5a5 !important;
+}
+
+.admin-main {
+  padding: 20px 20px 40px;
+}
+
+.admin-main h1 {
+  margin-top: 0;
+}
+
+.admin-form {
+  background: #020617;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(148,163,184,.35);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-alert {
+  background: rgba(34,197,94,.1);
+  border: 1px solid rgba(34,197,94,.5);
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(148,163,184,.35);
+  margin: 18px 0;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(55,65,81,.6);
+}
+
+.small-link {
+  background: none;
+  border: none;
+  color: #93c5fd;
+  font-size: 12px;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.small-link.danger {
+  color: #fca5a5;
+}
+
+.inline-form {
+  display: inline;
+}
+
+/* texto apoyo fuerza contraseña */
+.password-strength {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Galería dentro del ADMIN (subir/borrar fotos) */
+.gallery-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.gallery-item {
+  background: #020617;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  min-height: 90px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================================================
+   PÁGINA DETALLE PROPIEDAD – CONTENEDOR, CARRUSEL, RESUMEN
+   (propiedad.php)
+   ========================================================= */
+.property-wrapper{
+  max-width:1200px;
+  margin:24px auto 64px;
+  padding:0 16px;
+}
+
+.property-hero{
+  display:grid;
+  grid-template-columns:minmax(0,2fr) minmax(0,1.2fr); /* slider izq, resumen der */
+  gap:24px;
+  margin-bottom:24px;
+}
+
+/* Tarjetas principales del detalle */
+.property-slider-card,
+.property-summary-card,
+.property-card{
+  background:var(--bg-card);
+  border-radius:22px;
+  border:1px solid var(--border-subtle);
+  box-shadow:0 18px 45px rgba(15,23,42,.55);
+}
+
+/* Slider grande superior izquierdo */
+.property-slider-card{
+  padding:0;
+  overflow:hidden;
+}
+
+/* Tarjeta resumen (derecha) */
+.property-summary-card{
+  padding:20px 22px;
+}
+
+/* ----- slider interno (se reutiliza en admin si quieres) ----- */
+.slider-main {
+  position: relative;
+}
+
+.slider-window {
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform .4s ease;
+}
+
+.slide {
+  min-width: 100%;
+  max-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #1e293b, #020617);
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,.6);
+  background: rgba(15,23,42,.9);
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.slider-arrow:hover {
+  background: rgba(30,64,175,.9);
+}
+
+.slider-arrow[data-prev] { left: 10px; }
+.slider-arrow[data-next] { right: 10px; }
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.slider-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,.6);
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider-dot.active {
+  background: #e5e7eb;
+}
+
+/* ----- Tipografía de resumen ----- */
+.property-title{
+  margin:10px 0 6px;
+  font-size:24px;
+}
+
+.property-short{
+  margin:0 0 14px;
+  font-size:14px;
+  color:var(--text-muted);
+}
+
+.property-status-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+/* Estados de la propiedad (Disponible, Ocupada, etc.) */
+/* ----- BADGE SUAVE EN MODO CLARO ----- */
+/* ===== CHIP DE CAPACIDAD: estilo tipo botón negro ===== */
+/* ===== BADGE SUAVE (CAPACIDAD, ETC.) MODO CLARO ===== */
+.status-badge.status-soft {
+  background: #e8f0ff;        /* azul suave claro */
+  color: #173457;             /* azul fuerte */
+  border: 1px solid #c7d6f5;  /* borde azul pastel */
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ===== BADGE DISPONIBLE - MODO CLARO ===== */
+.status-badge.status-disponible {
+  background: #d4f7df;
+  color: #166534;
+  border: 1px solid #a7e7c2;
+}
+
+
+.status-badge{
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid var(--border-subtle);
+  background:#020617;
+}
+
+.status-disponible{
+  border-color:#22c55e33;
+  background:#16a34a33;
+  color:#bbf7d0;
+}
+
+.status-ocupada{
+  border-color:#f9731633;
+  background:#ea580833;
+  color:#fed7aa;
+}
+
+.status-no_disponible{
+  border-color:#6b728033;
+  background:#111827;
+  color:#e5e7eb;
+}
+
+.status-soft{
+  color:var(--text-main);
+}
+.property-actions-row{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+
+
+
+/* =========================================================
+   DETALLE PROPIEDAD – GRID DESCRIPCIÓN / SERVICIOS / REGLAS
+   (Esta parte es el cambio que pediste)
+   ========================================================= */
+.property-info-grid{
+  /* 2 columnas: izquierda texto, derecha servicios */
+  display:grid;
+  grid-template-columns:minmax(0,2fr) minmax(0,1.2fr);
+  grid-auto-rows:auto;        /* las filas se ajustan al contenido */
+  column-gap:24px;
+  row-gap:16px;
+  margin-bottom:24px;
+}
+
+/* Card genérica dentro del grid (desc, servicios, reglas) */
+.property-card{
+  padding:18px 22px;
+}
+
+/* Descripción general: columna izquierda, fila 1 */
+.property-desc-card{
+  grid-column:1;
+  grid-row:1;
+}
+
+/* Indicaciones y reglas: columna izquierda, fila 2 (debajo de descripción) */
+.property-rules-card{
+  grid-column:1;
+  grid-row:2;
+}
+
+/* Servicios: columna derecha, ocupando las dos filas */
+.property-services-card{
+  grid-column:2;
+  grid-row:1 / span 2;
+}
+
+/* Títulos dentro de estas cards */
+.section-title{
+  margin:0 0 8px;
+  font-size:18px;
+}
+
+/* Título de la sección "Indicaciones y reglas" */
+.section-subtitle{
+  margin:0 0 6px;
+  font-size:15px;
+  color:var(--text-main);  /* mismo color que los títulos principales */
+  font-weight:600;
+}
+
+
+.desc-text{
+  margin:0;
+  font-size:14px;
+  color:var(--text-muted);
+}
+
+/* ----- Lista de servicios tipo "chips" a la derecha ----- */
+.services-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:6px;
+}
+
+.chip-service{
+  width:100%;
+  text-align:left;
+  border-radius:10px;
+  border:1px solid var(--chip-border);
+  background:var(--chip-bg);
+  color:var(--text-main);
+  font-size:13px;
+  padding:8px 10px;
+}
+
+/* ----- Lista con bullets para indicaciones y reglas ----- */
+.rules-list{
+  margin:4px 0 0;
+  padding-left:18px;
+  font-size:13px;
+  color:var(--text-muted);
+}
+
+.rules-list li + li{
+  margin-top:4px;
+}
+
+/* Mini estadísticas debajo de los botones del resumen */
+.property-mini-stats{
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(148,163,184,.25);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 8px 16px;
+}
+
+.mini-stat{
+  text-align: center;
+}
+
+.mini-label{
+  display:block;
+  font-size:12px;
+  color:var(--text-muted);
+}
+
+.mini-value{
+  display:block;
+  font-size:18px;
+  font-weight:600;
+  color:var(--text-main);
+}
+
+
+/* =========================================================
+   DETALLE PROPIEDAD – GALERÍA Y UBICACIÓN
+   ========================================================= */
+.property-gallery-card{
+  margin-bottom:24px;
+}
+
+/* Galería de 4 fotos tipo maqueta (solo en detalle, no admin) */
+.property-gallery-card .gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+  margin-top:8px;
+}
+
+.property-gallery-card .gallery-item{
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid var(--border-subtle);
+}
+
+.property-gallery-card .gallery-item img{
+  display:block;
+  width:100%;
+  height:140px;
+  object-fit:cover;
+}
+
+/* Ubicación + filas Dirección / Distancia / Drive / Contacto */
+.property-location-card .location-rows{
+  margin-top:6px;
+}
+
+.location-row{
+  display:grid;
+  grid-template-columns:140px minmax(0,1fr);
+  column-gap:12px;
+  row-gap:4px;
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.location-label{
+  font-weight:600;
+}
+
+.location-value{
+  color:var(--text-muted);
+}
+
+.muted-text{
+  font-size:13px;
+  color:var(--text-muted);
+}
+
+/* Imagen principal de casa en el INICIO (tarjeta de listado) */
+.home-property-img{
+  width: 100%;
+  max-height: 320px;        /* aquí controlas qué tan alta la quieres */
+  border-radius: 18px 18px 0 0;
+  object-fit: cover;        /* recorta la imagen sin deformarla */
+  display: block;
+}
+
+/* Opcional: contenedor de la tarjeta para que no se vea tan largo */
+.home-property-card{
+  max-width: 1120px;
+  margin: 0 auto 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ====== GRID DE PROPIEDADES (RENTAS / VENTAS / VILLAS) ====== */
+
+/* Contenedor con 2 cartas por fila en desktop */
+.home-property-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+  gap:20px;
+}
+
+/* Tarjeta de propiedad en el listado */
+.home-property-card{
+  background:var(--bg-card);
+  border-radius:18px;
+  border:1px solid var(--border-subtle);
+  box-shadow:0 14px 30px rgba(15,23,42,.45);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Wrapper de la imagen para poder poner la etiqueta encima */
+.home-property-img-wrapper{
+  position:relative;
+  overflow:hidden;
+}
+
+/* Imagen más pequeña y recortada, con esquinas visibles */
+.home-property-img{
+  width:100%;
+  height:230px;           /* aquí la hacemos más chica */
+  object-fit:cover;
+  display:block;
+}
+
+/* Etiqueta “Disponible / Ocupada / No disponible” encima de la foto */
+.card-status-chip{
+  position:absolute;
+  top:12px;
+  left:12px;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:500;
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(15,23,42,.6);
+}
+
+/* Verde para disponible */
+.card-status-disponible{
+  background:rgba(22,163,74,.9); /* verde */
+  color:#ecfdf5;
+}
+
+/* Rojo para ocupada */
+.card-status-ocupada{
+  background:rgba(220,38,38,.92); /* rojo */
+  color:#fee2e2;
+}
+
+/* NEGRO para no disponible */
+.card-status-no-disponible{
+  background:rgba(0,0,0,.85); /* negro */
+  color:#ffffff; /* texto blanco */
+  border-color:rgba(255,255,255,.4);
+}
+
+/* Cuerpo de tarjeta */
+.home-property-body{
+  padding:14px 16px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.home-property-title{
+  margin:0;
+  font-size:16px;
+}
+
+.home-property-text{
+  margin:0;
+  font-size:14px;
+  color:var(--text-muted);
+}
+
+
+/* ===== CHIP NEGRO (Capacidad + Distancia) ===== */
+.capacity-chip,
+.distance-chip {
+  background: #e8f0ff;         /* azul suave claro */
+  color: #173457;              /* azul fuerte */
+  border: 1px solid #c7d6f5;   /* borde azul pastel */
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 11px;
+  font-weight: 500;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+/* modo oscuro — si quieres que se mantenga igual */
+.dark-mode .status-badge.status-soft {
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid #1e293b;
+}
+
+/*personas dentro de la imagen===================*/
+.capacity-circle {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  
+  width: 42px;          /* MÁS PEQUEÑO */
+  height: 42px;
+  
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);   /* Fondo semi-transparente, no “blocoso” */
+  backdrop-filter: blur(4px);
+
+  border: 1.5px solid rgba(0, 0, 0, 0.15); /* LÍNEA DELGADA Y ELEGANTE */
+  
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18); /* sombra suave */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+/* ICONO pequeño */
+.capacity-circle-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.85;
+}
+
+/* NÚMERO centrado y más delgado */
+.capacity-circle-number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+
+/* =========================================================
+   RESPONSIVE GENERAL
+   ========================================================= */
+@media (max-width: 980px){
+  /* Detalle propiedad: columnas se apilan */
+  .property-hero{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .property-info-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .property-rules-card{
+    grid-column:1;
+    grid-row:auto;
+  }
+  .property-services-card{
+    grid-column:1;
+    grid-row:auto;
+  }
+
+  .property-gallery-card .gallery-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+/* Menú se oculta en móvil y hero se hace 1 columna */
+@media (max-width: 900px) {
+  .main-nav {
+    display: none;
+  }
+
+  .property-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Admin y formularios en pantallas pequeñas */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  .admin-sidebar {
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+  }
+  .admin-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
