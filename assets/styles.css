@@ -62,97 +62,6 @@ body {
 }
 
 /* =========================================================
-   HEADER PRINCIPAL (logo, menú navegación, modo oscuro)
-   ========================================================= */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: linear-gradient(to bottom, rgba(2,6,23,.92), rgba(2,6,23,0.85));
-  color: #f9fafb;
-  border-bottom: 1px solid rgba(148,163,184,.4);
-  backdrop-filter: blur(16px);
-}
-
-.header-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.logo-area {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-img {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  object-fit: cover;
-}
-
-.logo-text {
-  font-weight: 600;
-  letter-spacing: .03em;
-}
-
-.main-nav {
-  display: flex;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.main-nav a {
-  text-decoration: none;
-  color: #e5e7eb;
-  padding: 6px 10px;
-  border-radius: 999px;
-  transition: background .2s, color .2s, transform .15s;
-}
-
-.main-nav a:hover {
-  background: rgba(148,163,184,.2);
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-toggle-theme {
-  border: 1px solid rgba(148,163,184,.5);
-  background: rgba(15,23,42,.7);
-  color: #e5e7eb;
-  border-radius: 999px;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btn-toggle-theme:hover {
-  background: rgba(30,64,175,.9);
-}
-
-/* Punto secreto de acceso al admin */
-.admin-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid transparent;
-  display: inline-block;
-}
-
-/* =========================================================
    LAYOUT PÁGINA PRINCIPAL (index)
    ========================================================= */
 .page-main {
@@ -212,6 +121,16 @@ body {
   cursor: pointer;
   text-decoration: none;
   font-weight: 500;
+}
+.btn-row {
+  display: flex;
+  gap: 12px;            /* espacio entre botones */
+  margin: 15px 0;
+  flex-wrap: wrap;      /* permite acomodarse si la pantalla es pequeña */
+}
+
+.btn-row a {
+  white-space: nowrap;  /* evita que se parta el texto */
 }
 
 .btn-primary {
@@ -279,93 +198,6 @@ textarea {
   resize: vertical;
 }
 
-/* =========================================================
-   FOOTER PRINCIPAL
-   ========================================================= */
-.site-footer {
-  border-top: 1px solid rgba(148,163,184,.35);
-  padding: 14px 16px;
-  background: #020617;
-}
-
-.footer-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer-logo img {
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  object-fit: cover;
-}
-
-.footer-logo span {
-  font-size: 13px;
-  color: #e5e7eb;
-}
-
-.site-footer small {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-/* =========================================================
-   PÁGINAS DE ADMIN – LOGIN
-   ========================================================= */
-.admin-body {
-  background: radial-gradient(circle at top, #020617, #020617);
-  color: #e5e7eb;
-}
-
-.admin-login-wrapper {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.admin-login-card {
-  width: 100%;
-  max-width: 360px;
-  background: #020617;
-  border-radius: 18px;
-  padding: 20px 18px 22px;
-  border: 1px solid rgba(148,163,184,.35);
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.admin-login-card h1 {
-  font-size: 20px;
-  margin: 0 0 4px;
-}
-
-.form-error {
-  background: rgba(239,68,68,.1);
-  color: #fecaca;
-  border-radius: 10px;
-  padding: 6px 8px;
-  font-size: 12px;
-}
-
-.btn-ghost.small {
-  margin-top: 4px;
-  font-size: 12px;
-}
 
 /* =========================================================
    PÁGINAS DE ADMIN – LAYOUT PANEL, TABLAS, GALERÍA
@@ -920,12 +752,19 @@ textarea {
 
 /* ====== GRID DE PROPIEDADES (RENTAS / VENTAS / VILLAS) ====== */
 
-/* Contenedor con 2 cartas por fila en desktop */
-.home-property-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-  gap:20px;
+.home-property-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columnas fijo */
+  gap: 24px;
 }
+
+/* En pantallas pequeñas: 1 columna */
+@media (max-width: 768px) {
+  .home-property-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 /* Tarjeta de propiedad en el listado */
 .home-property-card{
@@ -1004,28 +843,7 @@ textarea {
 }
 
 
-/* ===== CHIP NEGRO (Capacidad + Distancia) ===== */
-.capacity-chip,
-.distance-chip {
-  background: #e8f0ff;         /* azul suave claro */
-  color: #173457;              /* azul fuerte */
-  border: 1px solid #c7d6f5;   /* borde azul pastel */
-  padding: 4px 12px;
-  border-radius: 40px;
-  font-size: 11px;
-  font-weight: 500;
-  margin-left: 10px;
-  display: inline-block;
-  vertical-align: middle;
-}
 
-
-/* modo oscuro — si quieres que se mantenga igual */
-.dark-mode .status-badge.status-soft {
-  background: #0f172a;
-  color: #ffffff;
-  border: 1px solid #1e293b;
-}
 
 /*personas dentro de la imagen===================*/
 .capacity-circle {

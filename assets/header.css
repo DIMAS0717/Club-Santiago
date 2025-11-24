@@ -1,0 +1,106 @@
+/* HEADER FULL WIDTH */
+.header-full {
+    width: 100%;
+    background: linear-gradient(90deg, #3D5477, #173457);
+    padding: 6px 0;
+    color: white;
+}
+
+.header-container {
+    width: 92%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo img {
+    height: 150px;
+}
+
+.header-logo span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.header-nav {
+    display: flex;
+    gap: 38px;
+    margin-left: -140px;
+}
+
+.header-nav a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.header-nav a:hover {
+    opacity: 0.8;
+}
+
+/* Acciones */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Toggle Tema */
+.toggle-theme {
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 30px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Admin */
+.admin-dot {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.7);
+    position: relative;
+}
+
+.admin-dot::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #ffcc00;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Línea separadora */
+.header-line {
+    width: 100%;
+    height: 1.5px;
+    background: rgba(255,255,255,0.4);
+    margin-top: 10px;
+}
+
+/* DARK MODE */
+body.dark-mode .header-full {
+    background: linear-gradient(90deg, #020817, #051427);
+}
+
+body.dark-mode .header-line {
+    background: rgba(255,255,255,0.2);
+}
