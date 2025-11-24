@@ -24,16 +24,7 @@ require __DIR__ . '/includes/db.php';
     </p>
   </section>
 </main>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-logo">
-      <img src="assets/logo-clubsantiago.png" alt="Logo Club Santiago">
-      <span>Casas Club Santiago</span>
-    </div>
-    <small>© <?php echo date('Y'); ?> Casas Club Santiago - Manzanillo, Col.</small>
-  </div>
-</footer>
+<?php include __DIR__ . '/includes/footer.php'; ?>
 
 <script src="assets/app.js"></script>
 </body>

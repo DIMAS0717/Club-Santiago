@@ -120,7 +120,7 @@ $res = $conn->query($sql);
     <?php if (!empty($p['capacidad'])): ?>
       <div class="capacity-circle">
         <!-- AQUÍ PONES TU ICONO (imagen) -->
-        <img src="assets/usuarios.png"
+        <img src="assets/images/usuarios.png"
              alt="Capacidad"
              class="capacity-circle-icon">
 
@@ -162,15 +162,7 @@ $res = $conn->query($sql);
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-logo">
-      <img src="assets/logo-clubsantiago.png" alt="Logo Club Santiago">
-      <span>Casas Club Santiago</span>
-    </div>
-    <small>© <?php echo date('Y'); ?> Casas Club Santiago - Manzanillo, Col.</small>
-  </div>
-</footer>
+<?php include __DIR__ . '/includes/footer.php';?>
 
 <script src="assets/app.js"></script>
 </body>

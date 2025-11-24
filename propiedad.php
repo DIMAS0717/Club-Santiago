@@ -1,3 +1,4 @@
+
 <?php
 require __DIR__ . '/includes/db.php';
 
@@ -44,6 +45,7 @@ function split_items($text) {
   }
   return $out;
 }
+
 
 /* ================== Cargar propiedad ================== */
 
@@ -97,7 +99,8 @@ while ($row = $resFotos->fetch_assoc()) {
 $stmt->close();
 
 // Para el carrusel y la galería
-$slider_fotos  = array_slice($fotos, 0, 7);
+$slider_fotos = $fotos;  // SIN LÍMITE
+
 $galeria_fotos = array_slice($fotos, 0, 4);
 
 // Ítems para servicios e indicaciones
@@ -116,28 +119,8 @@ $indicaciones_items = split_items($prop['indicaciones'] ?? '');
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo-area">
-      <img src="assets/logo-clubsantiago.png" alt="Logo Club Santiago" class="logo-img">
-      <span class="logo-text">Club Santiago</span>
-    </div>
-    <nav class="main-nav">
-      <a href="index.php#inicio">Inicio</a>
-      <a href="index.php#renta">Propiedades en renta</a>
-      <a href="index.php#venta">Propiedades en venta</a>
-      <a href="index.php#villas">Nuestras villas</a>
-      <a href="index.php#alrededores">Alrededores</a>
-      <a href="index.php#contacto">Contáctanos</a>
-    </nav>
-    <div class="header-actions">
-      <button id="themeToggle" class="btn-toggle-theme" aria-label="Cambiar tema">
-        🌙
-      </button>
-      <a href="admin/login.php" class="admin-dot" title="Acceso administrador"></a>
-    </div>
-  </div>
-</header>
+
+<?php include __DIR__ . '/includes/header.php'; ?>
 
 <main class="property-wrapper">
 
@@ -199,10 +182,11 @@ $indicaciones_items = split_items($prop['indicaciones'] ?? '');
       <?php endif; ?>
 
       <!-- Botones centrados, uno debajo del otro -->
-      <div class="property-actions-row">
-        <a href="#ubicacion" class="btn-primary">Ver disponibilidad</a>
-        <a href="#contacto" class="btn-primary">Solicitar cotización</a>
-      </div>
+      <div class="btn-row">
+  <a class="btn-primary">Ver disponibilidad</a>
+  <a class="btn-primary-outline">Solicitar cotización</a>
+</div>
+
 
       <?php
         // Estos campos son opcionales (puedes crearlos en la tabla properties)
@@ -359,16 +343,7 @@ $indicaciones_items = split_items($prop['indicaciones'] ?? '');
 
 </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-logo">
-      <img src="assets/logo-clubsantiago.png" alt="Logo Club Santiago">
-      <span>Casas Club Santiago</span>
-    </div>
-    <small>© <?php echo date('Y'); ?> Casas Club Santiago - Manzanillo, Col.</small>
-  </div>
-</footer>
-
+<?php include __DIR__ . '/includes/footer.php'; ?>
 <script src="assets/app.js"></script>
 </body>
 </html>
