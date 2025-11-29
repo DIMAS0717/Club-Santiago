@@ -1,0 +1,219 @@
+/* ==================== CONTACTO (MISMO DISEÑO PEACE IN PROGRESS) ==================== */
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    main.page-main {
+      padding: 0; /* para que no meta margen extra arriba/abajo */
+    }
+
+    .cs-contact-section {
+      padding: 120px 40px 80px;
+      position: relative;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    .cs-contact-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #1a3a5c;
+      position: relative;
+    }
+
+    .cs-contact-section h2::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: #7cbcbc;
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+
+    .cs-contact-box {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      background: #ffffff;
+    }
+
+    .cs-left-panel {
+      background-color: #1a3a5c;
+      color: #fff;
+      flex: 1;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .cs-right-panel {
+      background-color: #fff;
+      flex: 1.5;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .cs-right-panel h3 {
+      margin: 0 0 20px 0;
+      font-size: 1.8rem;
+      color: #1a3a5c;
+      font-weight: 600;
+    }
+
+    .cs-info-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cs-icon {
+      font-size: 20px;
+      background-color: #7cbcbc;
+      color: #1a3a5c;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cs-label {
+      font-weight: 600;
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .cs-detail {
+      margin: 5px 0 0;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      letter-spacing: 0.5px;
+    }
+
+/* ==================== ICONOS REDES ESTILO "CLUB SANTIAGO" ==================== */
+
+.cs-socials .cs-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+
+}
+
+
+.cs-social {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18); /* fondo gris-azulado como en la imagen */
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;  /* icono blanco */
+    font-size: 22px;
+    text-decoration: none;
+    
+
+    /* sombra suave */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+
+    /* animación suave */
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.cs-social:hover {
+    transform: scale(1.12);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+
+    .cs-form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 5px;
+    }
+
+    .cs-input {
+      padding: 15px;
+      border: 1px solid #e1e5ea;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      background: #fff;
+      color: #333;
+      width: 100%;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    .cs-input:focus {
+      border-color: #7cbcbc;
+      box-shadow: 0 0 0 3px rgba(124, 188, 188, 0.2);
+      outline: none;
+    }
+
+    textarea.cs-input {
+      min-height: 150px;
+      resize: none;
+    }
+
+    .cs-submit {
+      align-self: flex-end;
+      padding: 12px 30px;
+      background-color: #7cbcbc;
+      color: #1a3a5c;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(124, 188, 188, 0.3);
+    }
+
+    .cs-submit:hover {
+      background-color: #1a3a5c;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    @media screen and (max-width: 992px) {
+      .cs-contact-box {
+        flex-direction: column;
+      }
+
+      .cs-left-panel,
+      .cs-right-panel {
+        padding: 40px 30px;
+      }
+
+      .cs-contact-section {
+        padding: 100px 20px 60px;
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      .cs-form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .cs-contact-section h2 {
+        font-size: 2rem;
+      }
+    }
