@@ -689,8 +689,6 @@ if ($view === 'casas' && isset($_GET['edit'])) {
     </div>
 <?php elseif ($view === 'perfil'): ?>
 
-        <?php elseif ($view === 'perfil'): ?>
-
             
             <!-- ===== EDITAR PERFIL ===== -->
             <div class="content-section">
