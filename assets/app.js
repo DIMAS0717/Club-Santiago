@@ -1,4 +1,4 @@
-// ====== MODO OSCURO / CLARO ======
+// ====== MODO OSCURO / CLARO ======//
 (function () {
   const body = document.body;
   const btn = document.getElementById('themeToggle');
@@ -17,7 +17,33 @@
   });
 })();
 
-// ====== VALIDACIÓN DE CONTRASEÑA EN PANEL ======
+//================Slider(Carrusel de inicio)====================//
+let veSlides = document.querySelectorAll(".ve-slide");
+let index = 0;
+
+function showSlide(i) {
+  veSlides.forEach(s => s.classList.remove("active"));
+  veSlides[i].classList.add("active");
+}
+
+document.querySelector(".ve-right").onclick = () => {
+  index = (index + 1) % veSlides.length;
+  showSlide(index);
+};
+
+document.querySelector(".ve-left").onclick = () => {
+  index = (index - 1 + veSlides.length) % veSlides.length;
+  showSlide(index);
+};
+
+// Auto-slide
+setInterval(() => {
+  index = (index + 1) % veSlides.length;
+  showSlide(index);
+}, 6000);
+
+
+// ====== VALIDACIÓN DE CONTRASEÑA EN PANEL ======//
 (function () {
   const pwd = document.getElementById('passwordNueva');
   const strength = document.getElementById('passwordStrength');
@@ -38,7 +64,7 @@
   });
 })();
 
-// ====== SLIDER GALERÍA PROPIEDAD ======
+// ====== SLIDER GALERÍA PROPIEDAD ======//
 (function () {
   const slider = document.querySelector('[data-slider="property"]');
   if (!slider) return;

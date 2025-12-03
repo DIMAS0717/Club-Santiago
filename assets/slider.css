@@ -1,0 +1,126 @@
+/* =================== HERO SLIDER estilo Villas Eureka =================== */
+
+.ve-hero {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.ve-hero-container {
+  width: 96%;              /* ← MÁS ANCHO */
+  height: 540px;           /* ← MÁS ALTO */
+  border-radius: 32px;     /* ← BORDES MÁS GRANDES */
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+  background: #000;
+}
+
+/* Slides */
+.ve-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+
+.ve-slide.active {
+  opacity: 1;
+}
+
+/* Imagen */
+.ve-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay degradado */
+.ve-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.25)
+  );
+}
+
+/* TEXTOS */
+.ve-text {
+  position: absolute;
+  top: 44%;
+  left: 6%;
+  transform: translateY(-50%);
+  color: white;
+
+  opacity: 0;                  /* oculta inicialmente */
+  transition: opacity .7s ease; /* fade suave */
+}
+
+.ve-slide.active .ve-text {
+  opacity: 1;                  /* aparece */
+}
+
+
+/* Línea arriba del título */
+.ve-title-line {
+  width: 400px;
+  height: 2px;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+/* Título principal */
+.ve-text h2 {
+  font-size: 4rem;                /* ← UN POCO MÁS GRANDE */
+  font-weight: 800;
+  margin: 0 0 12px 0;
+}
+
+/* Subtítulos */
+.ve-sub {
+  font-size: 1.6rem;
+  margin: 0 0 8px;
+}
+
+.ve-desc {
+  font-size: 1.25rem;
+  opacity: .92;
+  margin-bottom: 32px;
+}
+
+/* Botón */
+.ve-btn {
+  display: inline-block;
+  background: white;
+  padding: 15px 34px;
+  border-radius: 40px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+}
+
+/* Flechas SIN CÍRCULO */
+.ve-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;     /* ← SIN CÍRCULO */
+  color: white;                /* ← SOLO FLECHA BLANCA */
+  font-size: 52px;             /* ← MÁS GRANDE */
+  cursor: pointer;
+  transition: .2s;
+  font-weight: 300;
+}
+
+.ve-left { left: 25px; }
+.ve-right { right: 25px; }
+
+.ve-arrow:hover {
+  opacity: 0.7;
+}
