@@ -66,11 +66,11 @@
     <img src="./assets/images/facebookicon.png" alt="Facebook">
   </a>
 
-  <a href="#" class="ve-social-circle">
+  <a href="https://www.instagram.com/villaseurekamanzanillo?igsh=bXR2c3o0Ync2cjF4" class="ve-social-circle">
     <img src="./assets/images/instagramicon.png" alt="Instagram">
   </a>
 
-  <a href="#" class="ve-social-circle">
+  <a href="https://www.tiktok.com/@villas.eureka?_r=1&_t=ZS-91ro2KUHMM3" class="ve-social-circle">
     <img src="./assets/images/tiktokicon.png" alt="WhatsApp">
   </a>
 
@@ -112,6 +112,7 @@
   color: var(--ve-text-main);
   padding: 20px 30px 14px;
   width: 100%;
+  margin-top: 0 !important;
   max-width: none;
   margin: 60px 0 0;   /* arriba sí, pero sin auto a los lados */
   border-radius: 0;   /* sin esquinas redondeadas para que llegue a los bordes */
