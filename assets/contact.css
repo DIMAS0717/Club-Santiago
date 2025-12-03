@@ -1,219 +1,223 @@
-/* ==================== CONTACTO (MISMO DISEÑO PEACE IN PROGRESS) ==================== */
+/* ==================== SECCIÓN CONTACTO ==================== */
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-    }
-
-    main.page-main {
-      padding: 0; /* para que no meta margen extra arriba/abajo */
-    }
-
-    .cs-contact-section {
-      padding: 120px 40px 80px;
-      position: relative;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    }
-
-    .cs-contact-section h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 50px;
-      color: #1a3a5c;
-      position: relative;
-    }
-
-    .cs-contact-section h2::after {
-      content: '';
-      display: block;
-      width: 100px;
-      height: 4px;
-      background: #7cbcbc;
-      margin: 15px auto 0;
-      border-radius: 2px;
-    }
-
-    .cs-contact-box {
-      display: flex;
-      max-width: 1100px;
-      margin: 0 auto;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-      background: #ffffff;
-    }
-
-    .cs-left-panel {
-      background-color: #1a3a5c;
-      color: #fff;
-      flex: 1;
-      padding: 50px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 40px;
-    }
-
-    .cs-right-panel {
-      background-color: #fff;
-      flex: 1.5;
-      padding: 50px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .cs-right-panel h3 {
-      margin: 0 0 20px 0;
-      font-size: 1.8rem;
-      color: #1a3a5c;
-      font-weight: 600;
-    }
-
-    .cs-info-block {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .cs-icon {
-      font-size: 20px;
-      background-color: #7cbcbc;
-      color: #1a3a5c;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .cs-label {
-      font-weight: 600;
-      margin: 0;
-      font-size: 1.1rem;
-    }
-
-    .cs-detail {
-      margin: 5px 0 0;
-      font-size: 0.95rem;
-      opacity: 0.9;
-      letter-spacing: 0.5px;
-    }
-
-/* ==================== ICONOS REDES ESTILO "CLUB SANTIAGO" ==================== */
-
-.cs-socials .cs-icons {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-
+body {
+  background-color: transparent !important;
+  overflow-x: hidden; /* ← evita cortes horizontales */
 }
 
+.page-main {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;     /* ← FIX: antes 100vw */
+  max-width: 100% !important; /* ← añadimos para evitar overflow */
+}
+
+.cs-contact-section {
+  background: url("../assets/images/fondo2.png") center/cover no-repeat;
+  width: 100%;          
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 150px;
+  overflow-x: hidden;   /* extra protección */
+}
+
+/* ----------- Título ---------- */
+
+.cs-title-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 10px;
+}
+
+.cs-title {
+  font-size: 4.2rem;
+  font-weight: 850;
+  color: #b8f0e6;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  margin-top: -40px;
+}
+
+.title-deco {
+  width: 95px;
+  margin-top: -35px;
+}
+
+.cs-title-underline {
+  display: block;
+  width: 400px;
+  height: 7px;
+  background: #b8f0e6;
+  margin: 0 auto 50px auto;
+  border-radius: 4px;
+  opacity: 0.95;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+/* ----------- Caja de contacto ---------- */
+
+.cs-contact-box {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;              /* ← asegura que nunca rompa */
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  background: #ffffffee;
+}
+
+/* LEFT PANEL */
+.cs-left-panel {
+  background: #173457;
+  color: #fff;
+  flex: 1;
+  padding: 55px 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 45px;
+}
+
+.cs-info-block {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.cs-icon {
+  font-size: 18px;
+  background-color: #7cbcbc;
+  color: #173457;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cs-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cs-detail {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-top: 3px;
+}
+
+/* Redes sociales */
+
+.cs-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
 
 .cs-social {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.18); /* fondo gris-azulado como en la imagen */
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;  /* icono blanco */
-    font-size: 22px;
-    text-decoration: none;
-    
-
-    /* sombra suave */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-
-    /* animación suave */
-    transition: transform 0.25s ease, background 0.25s ease;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+  transition: 0.25s ease;
 }
 
 .cs-social:hover {
-    transform: scale(1.12);
-    background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.12);
+  background: rgba(255,255,255,0.22);
 }
 
+/* RIGHT PANEL */
 
-    .cs-form-row {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 5px;
-    }
+.cs-right-panel {
+  flex: 1.5;
+  background: #fff;
+  padding: 55px 55px;
+}
 
-    .cs-input {
-      padding: 15px;
-      border: 1px solid #e1e5ea;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      background: #fff;
-      color: #333;
-      width: 100%;
-      box-sizing: border-box;
-      transition: all 0.3s ease;
-      margin-bottom: 15px;
-    }
+.cs-right-panel h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a3a5c;
+  margin-bottom: 20px;
+}
 
-    .cs-input:focus {
-      border-color: #7cbcbc;
-      box-shadow: 0 0 0 3px rgba(124, 188, 188, 0.2);
-      outline: none;
-    }
+.cs-form-row {
+  display: flex;
+  gap: 15px;
+}
 
-    textarea.cs-input {
-      min-height: 150px;
-      resize: none;
-    }
+.cs-input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e3e7ef;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  transition: 0.2s ease;
+}
 
-    .cs-submit {
-      align-self: flex-end;
-      padding: 12px 30px;
-      background-color: #7cbcbc;
-      color: #1a3a5c;
-      border: none;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(124, 188, 188, 0.3);
-    }
+.cs-input:focus {
+  border-color: #7cbcbc;
+  box-shadow: 0 0 0 3px rgba(124,188,188,0.25);
+  outline: none;
+}
 
-    .cs-submit:hover {
-      background-color: #1a3a5c;
-      color: #fff;
-      transform: translateY(-2px);
-    }
+textarea.cs-input {
+  min-height: 140px;
+  resize: none;
+  background: #f7f7f7;
+}
 
-    @media screen and (max-width: 992px) {
-      .cs-contact-box {
-        flex-direction: column;
-      }
+.cs-submit {
+  padding: 12px 35px;
+  background: #7cbcbc;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  color: #173457;
+  font-weight: 600;
+  float: right;
+  transition: 0.25s ease;
+}
 
-      .cs-left-panel,
-      .cs-right-panel {
-        padding: 40px 30px;
-      }
+.cs-submit:hover {
+  background: #173457;
+  color: #fff;
+}
 
-      .cs-contact-section {
-        padding: 100px 20px 60px;
-      }
-    }
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .cs-contact-box {
+    flex-direction: column;
+  }
 
-    @media screen and (max-width: 576px) {
-      .cs-form-row {
-        flex-direction: column;
-        gap: 0;
-      }
+  .cs-right-panel,
+  .cs-left-panel {
+    padding: 40px 35px;
+  }
+}
 
-      .cs-contact-section h2 {
-        font-size: 2rem;
-      }
-    }
+@media (max-width: 600px) {
+  .cs-title {
+    font-size: 2.4rem;
+  }
+
+  .title-deco {
+    width: 55px;
+  }
+
+  .cs-title-underline {
+    width: 160px;
+  }
+}
