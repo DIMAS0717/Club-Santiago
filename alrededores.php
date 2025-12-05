@@ -85,94 +85,128 @@ require __DIR__ . '/includes/db.php';
     </div>
   </section>
 
-  <!-- ACTIVIDADES DESTACADAS -->
+  <!--Deportes -->
   <section class="section around-activities-section">
-    <h2 class="around-section-title">Actividades destacadas</h2>
+  <h2 class="around-section-title">Deportes</h2>
 
-    <div class="around-activities-grid">
-      <!-- Senderismo -->
-      <article class="around-activity-card around-activity-hiking">
-        <div class="around-activity-badge badge-green">Naturaleza</div>
-        <div class="around-activity-overlay">
-          <h3>Senderismo</h3>
-          <p>
-            Rutas para disfrutar de la naturaleza, miradores y vistas
-            espectaculares de la bahía.
-          </p>
-          <a href="#" class="around-btn">Ver más →</a>
-        </div>
-      </article>
+  <div class="around-activities-grid">
 
-      <!-- Playas -->
-      <article class="around-activity-card around-activity-beach">
-        <div class="around-activity-badge badge-blue">Relajación</div>
-        <div class="around-activity-overlay">
-          <h3>Playas</h3>
-          <p>
-            Playas tranquilas para descansar, nadar o disfrutar del atardecer
-            a pocos minutos de tu casa.
-          </p>
-          <a href="#" class="around-btn">Ver más →</a>
-        </div>
-      </article>
+    <!-- Senderismo -->
+    <article class="around-activity-card around-activity-hiking">
+      <div class="around-activity-badge badge-green">Naturaleza</div>
+      <div class="around-activity-overlay">
+        <h3>Senderismo</h3>
+        <p>Rutas para disfrutar de la naturaleza y miradores espectaculares.</p>
+        <a href="#" class="around-btn">Ver más →</a>
+      </div>
+    </article>
 
-      <!-- Golf -->
-      <article class="around-activity-card around-activity-golf">
-        <div class="around-activity-badge badge-gray">Deporte</div>
-        <div class="around-activity-overlay">
-          <h3>Golf</h3>
-          <p>
-            Campo de golf muy cercano, ideal para practicar o disfrutar de una
-            ronda con amigos.
-          </p>
-          <a href="#" class="around-btn">Ver más →</a>
-        </div>
-      </article>
-    </div>
-  </section>
+    <!-- Golf -->
+    <article class="around-activity-card around-activity-golf">
+      <div class="around-activity-badge badge-gray">Deporte</div>
+      <div class="around-activity-overlay">
+        <h3>Golf</h3>
+        <p>Campo de golf cercano ideal para practicar o disfrutar con amigos.</p>
+        <a href="#" class="around-btn">Ver más →</a>
+      </div>
+    </article>
 
-  <!-- EXPERIENCIAS RECOMENDADAS -->
-  <section class="section around-experiences-section">
-    <h2 class="around-section-title">Experiencias recomendadas</h2>
+    <!-- Ciclismo (NUEVO) -->
+    <article class="around-activity-card around-activity-cycling">
+      <div class="around-activity-badge badge-green">Aventura</div>
+      <div class="around-activity-overlay">
+        <h3>Ciclismo</h3>
+        <p>Rutas seguras para recorrer en bicicleta y disfrutar el paisaje.</p>
+        <a href="#" class="around-btn">Ver más →</a>
+      </div>
+    </article>
 
-    <div class="around-experiences-grid">
-      <article class="around-experience-card">
-        <div class="around-experience-image">
-          <img src="assets/images/comida.png" alt="Comidas típicas en ramadas">
-        </div>
-        <div class="around-experience-body">
-          <h3>Comidas típicas en ramadas locales</h3>
-          <p>
-            Disfruta mariscos frescos y platillos típicos en ramadas frente al mar.
-          </p>
-        </div>
-      </article>
+  </div>
+</section>
+<!--Experiencias Recomendadas -->
+<section class="section around-experiences-section">
+  <h2 class="around-section-title">Experiencias recomendadas</h2>
 
-      <article class="around-experience-card">
-        <div class="around-experience-image">
-          <img src="assets/images/atardecer-club-santiago.jpg" alt="Atardecer">
-        </div>
-        <div class="around-experience-body">
-          <h3>Mejor punto para ver el atardecer</h3>
-          <p>
-            Lugares ideales para fotos y atardeceres impresionantes en Club Santiago.
-          </p>
-        </div>
-      </article>
+  <div class="around-experiences-grid">
 
-      <article class="around-experience-card">
-        <div class="around-experience-image">
-          <img src="assets/images/delfines-temporada.jpg" alt="Delfines en temporada">
-        </div>
-        <div class="around-experience-body">
-          <h3>Avistamiento de delfines en temporada</h3>
-          <p>
-            En ciertas épocas del año es posible ver delfines desde la costa o en tours.
-          </p>
-        </div>
-      </article>
-    </div>
-  </section>
+    <!-- Banana -->
+    <article class="around-experience-card">
+      <div class="around-experience-image">
+        <img src="assets/images/banana-playa.jpg" alt="Banana en la playa">
+      </div>
+      <div class="around-experience-body">
+        <h3>Banana en la playa</h3>
+        <p>Actividad divertida para grupos y familias con vista al mar.</p>
+      </div>
+    </article>
+
+    <!-- Atardecer -->
+    <article class="around-experience-card">
+      <div class="around-experience-image">
+        <img src="assets/images/atardecer-club-santiago.jpg" alt="Atardecer">
+      </div>
+      <div class="around-experience-body">
+        <h3>Mejor punto para ver el atardecer</h3>
+        <p>Fotografías increíbles y momentos únicos en la bahía.</p>
+      </div>
+    </article>
+
+    <!-- Comida típica -->
+    <article class="around-experience-card">
+      <div class="around-experience-image">
+        <img src="assets/images/comida.png" alt="Comidas típicas">
+      </div>
+      <div class="around-experience-body">
+        <h3>Comidas típicas enramadas locales</h3>
+        <p>Platillos tradicionales y mariscos frescos frente al mar.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+<!--RESTTAURANTES-->
+<section class="section around-experiences-section">
+  <h2 class="around-section-title">Restaurantes</h2>
+
+  <div class="around-experiences-grid">
+
+    <!-- Oasis -->
+    <article class="around-experience-card">
+      <div class="around-experience-image">
+        <img src="assets/images/oasis.jpg" alt="Restaurante Oasis">
+      </div>
+      <div class="around-experience-body">
+        <h3>Restaurante OASIS</h3>
+        <p>Ambiente agradable y comida fresca con vista al mar.</p>
+      </div>
+    </article>
+
+    <!-- Delfos -->
+    <article class="around-experience-card">
+      <div class="around-experience-image">
+        <img src="assets/images/delfos.jpg" alt="Restaurante Delfos">
+      </div>
+      <div class="around-experience-body">
+        <h3>Restaurante Delfos</h3>
+        <p>Especialidades del mar, pescados y mariscos de calidad.</p>
+      </div>
+    </article>
+
+    <!-- Eureka -->
+    <article class="around-experience-card">
+      <div class="around-experience-image">
+        <img src="assets/images/eureka-tienda.jpg" alt="Tienda Eureka">
+      </div>
+      <div class="around-experience-body">
+        <h3>Tienda Eureka</h3>
+        <p>Tienda local con artesanías y productos típicos de la región.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+ 
 
 </main>
 
