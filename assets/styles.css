@@ -124,8 +124,9 @@ body {
 }
 .btn-row {
   display: flex;
-  gap: 12px;            /* espacio entre botones */
+  gap: 18px;            /* espacio entre botones */
   margin: 15px 0;
+  margin-top: 30px;
   flex-wrap: wrap;      /* permite acomodarse si la pantalla es pequeña */
 }
 

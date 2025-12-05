@@ -18,29 +18,39 @@
 })();
 
 //================Slider(Carrusel de inicio)====================//
-let veSlides = document.querySelectorAll(".ve-slide");
-let index = 0;
+(function () {
+  const right = document.querySelector(".ve-right");
+  const left = document.querySelector(".ve-left");
+  const veSlides = document.querySelectorAll(".ve-slide");
 
-function showSlide(i) {
-  veSlides.forEach(s => s.classList.remove("active"));
-  veSlides[i].classList.add("active");
-}
+  if (!right || !left || veSlides.length === 0) {
+    console.log("Slider de inicio no está en esta página.");
+    return; // ← Evita el error
+  }
 
-document.querySelector(".ve-right").onclick = () => {
-  index = (index + 1) % veSlides.length;
-  showSlide(index);
-};
+  let index = 0;
 
-document.querySelector(".ve-left").onclick = () => {
-  index = (index - 1 + veSlides.length) % veSlides.length;
-  showSlide(index);
-};
+  function showSlide(i) {
+    veSlides.forEach(s => s.classList.remove("active"));
+    veSlides[i].classList.add("active");
+  }
 
-// Auto-slide
-setInterval(() => {
-  index = (index + 1) % veSlides.length;
-  showSlide(index);
-}, 6000);
+  right.onclick = () => {
+    index = (index + 1) % veSlides.length;
+    showSlide(index);
+  };
+
+  left.onclick = () => {
+    index = (index - 1 + veSlides.length) % veSlides.length;
+    showSlide(index);
+  };
+
+  setInterval(() => {
+    index = (index + 1) % veSlides.length;
+    showSlide(index);
+  }, 6000);
+})();
+
 
 
 // ====== VALIDACIÓN DE CONTRASEÑA EN PANEL ======//
@@ -63,6 +73,8 @@ setInterval(() => {
     strength.textContent = msg;
   });
 })();
+
+
 
 // ====== SLIDER GALERÍA PROPIEDAD ======//
 (function () {
@@ -95,3 +107,4 @@ setInterval(() => {
 
   goTo(0);
 })();
+

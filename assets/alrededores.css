@@ -1,0 +1,271 @@
+/* ===================== ALREDEDORES ===================== */
+
+.alrededores-page {
+  background-color: #f5f7fb;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Título + intro */
+
+.around-header {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.around-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #173457;
+  margin-bottom: 8px;
+}
+
+.around-subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  color: #64748b;
+  font-size: 0.98rem;
+}
+
+/* MAPA */
+
+.around-map-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.around-map-card {
+  width: 100%;
+  max-width: 1050px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
+  gap: 24px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+}
+
+.around-map-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.around-map-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.around-map-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.around-map-list li {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.95rem;
+  color: #1f2933;
+}
+
+.around-map-icon {
+  font-size: 1.1rem;
+}
+
+.around-map-time {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.around-map-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+/* Chips de servicios */
+
+.around-chips-section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.around-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #173457;
+  margin-bottom: 18px;
+}
+
+.around-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.around-chip {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: default;
+  color: #0f172a;
+}
+
+/* ACTIVIDADES DESTACADAS */
+
+/* ==== FONDOS PARA CADA ACTIVIDAD ==== */
+
+.around-activity-hiking {
+  background-image: url("./images/senderismo.png");
+}
+
+.around-activity-beach {
+  background-image: url("assets/images/playa.jpg");
+}
+
+.around-activity-golf {
+  background-image: url("assets/images/golf.jpg");
+}
+
+
+.around-activities-section {
+  margin-top: 50px;
+}
+
+.around-activities-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.around-activity-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 320px;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+}
+
+.around-activity-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.1));
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.around-activity-overlay h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.around-activity-overlay p {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  max-width: 90%;
+}
+
+.around-btn {
+  align-self: flex-start;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Badges */
+
+.around-activity-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ==== MODAL FULLSCREEN PARA MAPA ==== */
+
+.map-modal {
+  display: none; 
+  position: fixed;
+  z-index: 9999;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.85);
+}
+
+.map-modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.map-close {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.map-close:hover {
+  color: #7cbcbc;
+}
+
+#openMap {
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#openMap:hover {
+  transform: scale(1.03);
+}
+
+
+.badge-green {
+  background: rgba(22, 163, 74, 0.9);
+}
+
+.badge-blue {
+  background: rgba(37, 99, 235, 0.9);
+}
+
+.badge-gray {
+  background: rgba(51, 65, 85, 0.9);
+}

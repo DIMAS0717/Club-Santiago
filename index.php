@@ -14,94 +14,36 @@ require __DIR__ . '/includes/db.php';
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <?php include __DIR__ . '/includes/header.php'; ?>
 
-<main class="page-main">
-  <section class="section">
-    <h1>Casas Club Santiago</h1>
-    <p class="muted-text">
-      Sitio oficial de rentas y ventas en Club Santiago, Manzanillo.
-      Usa el menú superior para ver propiedades en renta, en venta, nuestras villas,
-      alrededores y datos de contacto.
-    </p>
-  </section>
 
-  <!--Carrusel de el inicio-->
-  <section class="ve-hero">
+<?php
+$slides = [
+  "assets/images/fondo_1.JPG",
+  "assets/images/fondo_2.JPG",
+  "assets/images/fondo_3.JPG",
+  "assets/images/fondo_4.JPG",
+  "assets/images/fondo_5.JPG",
+];
+?>
+<section class="ve-hero">
   <div class="ve-hero-container">
 
-    <!-- Slide 1 -->
-    <div class="ve-slide active">
-      <img src="assets/images/fondo_1.png" alt="">
-      <div class="ve-overlay"></div>
+    <?php foreach ($slides as $i => $img): ?>
+      <div class="ve-slide <?= $i === 0 ? 'active' : '' ?>">
+        <img src="<?= $img ?>" alt="slide <?= $i+1 ?>">
+        <div class="ve-overlay"></div>
 
-      <div class="ve-text">
-        <div class="ve-title-line"></div>
-        <h2>Villas Eureka</h2>
-
-        <p class="ve-sub">Tu descanso en Club Santiago</p>
-        <p class="ve-desc">Villas familiares y casas vacacionales cerca de la playa</p>
-
-        <a href="#" class="ve-btn">Ver propiedades →</a>
+        <div class="ve-text">
+          <div class="ve-title-line"></div>
+          <h2>Villas Eureka</h2>
+          <p class="ve-sub">Tu descanso en Club Santiago</p>
+          <p class="ve-desc">Villas familiares y casas vacacionales cerca de la playa</p>
+          <a href="renta.php" class="ve-btn">Ver propiedades →</a>
+        </div>
       </div>
-    </div>
-
-    <!-- AGREGAS TUS OTRAS 4 IMÁGENES AQUÍ -->
-    <div class="ve-slide">
-      <img src="assets/images/fondo_2.png" alt="">
-      <div class="ve-overlay"></div>
-      <div class="ve-text">
-        <div class="ve-title-line"></div>
-        <h2>Villas Eureka</h2>
-
-        <p class="ve-sub">Tu descanso en Club Santiago</p>
-        <p class="ve-desc">Villas familiares y casas vacacionales cerca de la playa</p>
-
-        <a href="#" class="ve-btn">Ver propiedades →</a>
-      </div>
-    </div>
-
-    <div class="ve-slide">
-      <img src="assets/images/fondo_3.png" alt="">
-      <div class="ve-overlay"></div>
-      <div class="ve-text">
-        <div class="ve-title-line"></div>
-        <h2>Villas Eureka</h2>
-
-        <p class="ve-sub">Tu descanso en Club Santiago</p>
-        <p class="ve-desc">Villas familiares y casas vacacionales cerca de la playa</p>
-
-        <a href="#" class="ve-btn">Ver propiedades →</a>
-      </div>
-    </div>
-
-    <div class="ve-slide">
-      <img src="assets/images/slide4.jpg" alt="">
-      <div class="ve-overlay"></div>
-      <div class="ve-text">
-        <div class="ve-title-line"></div>
-        <h2>Villas Eureka</h2>
-
-        <p class="ve-sub">Tu descanso en Club Santiago</p>
-        <p class="ve-desc">Villas familiares y casas vacacionales cerca de la playa</p>
-
-        <a href="#" class="ve-btn">Ver propiedades →</a>
-      </div>
-    </div>
-
-    <div class="ve-slide">
-      <img src="assets/images/slide5.jpg" alt="">
-      <div class="ve-overlay"></div>
-      <div class="ve-text">
-        <div class="ve-title-line"></div>
-        <h2>Villas Eureka</h2>
-
-        <p class="ve-sub">Tu descanso en Club Santiago</p>
-        <p class="ve-desc">Villas familiares y casas vacacionales cerca de la playa</p>
-
-        <a href="#" class="ve-btn">Ver propiedades →</a>
-      </div>
-    </div>
+    <?php endforeach; ?>
 
     <!-- Flechas -->
     <button class="ve-arrow ve-left">❮</button>
@@ -111,16 +53,8 @@ require __DIR__ . '/includes/db.php';
 </section>
 
 
-
-  <section class="section">
-    <h2>Bienvenido</h2>
-    <p class="muted-text">
-      Aquí puedes mostrar un pequeño texto de presentación, una foto de Club Santiago,
-      o un mensaje para tus clientes. Esta página no muestra listas de casas, eso se ve
-      en las subpáginas de Renta, Venta y Villas.
-    </p>
-  </section>
 </main>
+
 
 <?php include __DIR__ . '/includes/footer.php';?>
 

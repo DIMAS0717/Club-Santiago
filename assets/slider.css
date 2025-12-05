@@ -1,20 +1,22 @@
 /* =================== HERO SLIDER estilo Villas Eureka =================== */
 
 .ve-hero {
-  display: flex;
-  justify-content: center;
-  padding-top: 30px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+
 .ve-hero-container {
-  width: 96%;              /* ← MÁS ANCHO */
-  height: 540px;           /* ← MÁS ALTO */
-  border-radius: 32px;     /* ← BORDES MÁS GRANDES */
+  width: 100%;
+  height: 85vh;          /* más alto, estilo portada */
+  max-height: 900px;
+  border-radius: 0;       /* sin bordes, full */
   overflow: hidden;
   position: relative;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.18);
   background: #000;
 }
+
 
 /* Slides */
 .ve-slide {
