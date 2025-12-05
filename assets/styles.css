@@ -1,5 +1,5 @@
 /* =========================================================
-   PALETA MODO CLARO (valores por defecto)
+   Colores Claros
    ========================================================= */
 :root {
   --blue-main:  #173457; /* barras, header, botones principales */
@@ -7,7 +7,7 @@
   --bg-light:   #ffffff; /* fondo */
   --text-dark:  #173457; /* títulos */
 
-  /* Tokens genéricos */
+ 
   --bg-page: var(--bg-light);
   --bg-card: #f3f4f6;
   --text-main: var(--text-dark);
@@ -25,7 +25,7 @@
 }
 
 /* =========================================================
-   PALETA MODO OSCURO (cuando el body tiene clase .dark)
+   Colores Modo
    ========================================================= */
 body.dark {
   --bg-body:      #020617;  /* fondo general */
@@ -347,26 +347,112 @@ textarea {
 }
 
 /* Galería dentro del ADMIN (subir/borrar fotos) */
+/* ====== GALERÍA ====== */
+
 .gallery-grid {
-  margin-top: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  padding: 20px 0;
 }
 
 .gallery-item {
-  background: #020617;
-  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  min-height: 90px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform .3s ease;
 }
+
+/* Hover effect */
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-item:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+
+/* ====== LIGHTBOX MODAL ====== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .25s ease;
+  z-index: 9999;
+}
+
+.lightbox.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+/* Flechas del lightbox */
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 48px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background .25s ease;
+}
+
+.lightbox-arrow:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.lightbox-prev {
+  left: 25px;
+}
+
+.lightbox-next {
+  right: 25px;
+}
+.lightbox-counter {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: #fff;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-weight: 500;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+
+
+
+@keyframes zoomIn {
+  from { transform: scale(.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 
 /* =========================================================
    PÁGINA DETALLE PROPIEDAD – CONTENEDOR, CARRUSEL, RESUMEN

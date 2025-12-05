@@ -44,6 +44,44 @@ $stmt->close();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $action = $_POST['action'] ?? '';
 
+  
+    /* Borrar varias fotos seleccionadas */
+    if ($action === 'delete_multiple_photos') {
+
+        if (!empty($_POST['delete_ids'])) {
+
+            foreach ($_POST['delete_ids'] as $photoId) {
+
+                // 1. Obtener archivo
+                $stmt = $conn->prepare("SELECT archivo FROM property_photos WHERE id=?");
+                $stmt->bind_param("i", $photoId);
+                $stmt->execute();
+                $stmt->bind_result($archivo);
+                $stmt->fetch();
+                $stmt->close();
+
+                // 2. Borrar archivo físico
+                if (!empty($archivo)) {
+                    $ruta = __DIR__ . '/../' . $archivo;
+                    if (file_exists($ruta)) {
+                        unlink($ruta);
+                    }
+                }
+
+                // 3. Borrar de la BD
+                $stmt = $conn->prepare("DELETE FROM property_photos WHERE id=?");
+                $stmt->bind_param("i", $photoId);
+                $stmt->execute();
+                $stmt->close();
+            }
+
+            $mensaje = 'Fotos eliminadas correctamente.';
+        }
+
+        $view = 'casas';
+    }
+
+
   /* Cambiar contraseña */
   if ($action === 'change_password') {
     $actual = $_POST['password_actual'] ?? '';
@@ -123,8 +161,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $view = 'perfil';
   }
 
-  /* Crear / editar propiedad (con foto principal, galería y categoría) */
-  if ($action === 'save_property') {
+/* Crear / editar propiedad (con foto principal, galerías y categoría) */
+if ($action === 'save_property') {
+
     $id_prop = (int)($_POST['id'] ?? 0);
     $nombreProp  = trim($_POST['nombre'] ?? '');
     $capacidad = (int)($_POST['capacidad'] ?? 0);
@@ -140,167 +179,141 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $enlace_drive = trim($_POST['enlace_drive'] ?? '');
     $datos_contacto = trim($_POST['datos_contacto'] ?? '');
     $estado_base = $_POST['estado_base'] ?? 'disponible';
-    $categoria   = $_POST['categoria'] ?? 'renta'; // renta / venta / villa
+    $categoria   = $_POST['categoria'] ?? 'renta';
 
-    // Foto actual (si se está editando)
+    // Foto principal en edición
     $foto_principal = $_POST['foto_actual'] ?? '';
 
-    // Carpeta para las fotos
+    // Carpeta para archivos
     $baseDir = __DIR__ . '/../uploads/propiedades';
-    if (!is_dir($baseDir)) {
-      mkdir($baseDir, 0777, true);
-    }
+    if (!is_dir($baseDir)) mkdir($baseDir, 0777, true);
 
-    // 1) FOTO PRINCIPAL
+    /* =============================
+        1) SUBIR FOTO PRINCIPAL
+    ============================== */
     if (!empty($_FILES['foto_principal']['name'])) {
-      $safeName = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $_FILES['foto_principal']['name']);
-      $destino  = $baseDir . '/' . $safeName;
-
-      if (move_uploaded_file($_FILES['foto_principal']['tmp_name'], $destino)) {
-        $foto_principal = 'uploads/propiedades/' . $safeName;
-      }
-    }
-
-       // 2) INSERT / UPDATE de la propiedad
-if ($id_prop > 0) {
-  // UPDATE con recámaras / baños / estacionamiento
-  $sqlUpdate = "UPDATE properties
-    SET nombre=?,
-        capacidad=?,
-        recamaras=?,
-        banos=?,
-        estacionamiento=?,
-        descripcion_corta=?,
-        descripcion_larga=?,
-        ubicacion=?,
-        distancia_mar=?,
-        servicios=?,
-        indicaciones=?,
-        enlace_drive=?,
-        datos_contacto=?,
-        foto_principal=?,
-        estado_base=?,
-        categoria=?
-    WHERE id=?";
-
-  $stmt = $conn->prepare($sqlUpdate);
-  if (!$stmt) {
-    die('Error prepare UPDATE: ' . $conn->error);
-  }
-
-  $stmt->bind_param(
-    'siiissssssssssssi',
-    $nombreProp,        // s
-    $capacidad,         // i
-    $recamaras,         // i
-    $banos,             // i
-    $estacionamiento,   // s
-    $desc_corta,        // s
-    $desc_larga,        // s
-    $ubicacion,         // s
-    $distancia,         // s
-    $servicios,         // s
-    $indicaciones,      // s
-    $enlace_drive,      // s
-    $datos_contacto,    // s
-    $foto_principal,    // s
-    $estado_base,       // s
-    $categoria,         // s
-    $id_prop            // i
-  );
-
-
-      if (!$stmt->execute()) {
-        die("Error execute UPDATE: " . $stmt->error);
-      }
-
-      $stmt->close();
-      $mensaje = 'Propiedad actualizada.';
-    } else {
-  // INSERT con recámaras / baños / estacionamiento
-  $sqlInsert = "INSERT INTO properties
-    (nombre,
-     capacidad,
-     recamaras,
-     banos,
-     estacionamiento,
-     descripcion_corta,
-     descripcion_larga,
-     ubicacion,
-     distancia_mar,
-     servicios,
-     indicaciones,
-     enlace_drive,
-     datos_contacto,
-     foto_principal,
-     estado_base,
-     categoria)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
-  $stmt = $conn->prepare($sqlInsert);
-  if (!$stmt) {
-    die('Error prepare INSERT: ' . $conn->error);
-  }
-
-  $stmt->bind_param(
-    'siiissssssssssss',
-    $nombreProp,       // s
-    $capacidad,        // i
-    $recamaras,        // i
-    $banos,            // i
-    $estacionamiento,  // s
-    $desc_corta,       // s
-    $desc_larga,       // s
-    $ubicacion,        // s
-    $distancia,        // s
-    $servicios,        // s
-    $indicaciones,     // s
-    $enlace_drive,     // s
-    $datos_contacto,   // s
-    $foto_principal,   // s
-    $estado_base,      // s
-    $categoria         // s
-  );
-
-
-      if (!$stmt->execute()) {
-        die("Error execute INSERT: " . $stmt->error);
-      }
-
-      $id_prop = $stmt->insert_id;
-      $stmt->close();
-      $mensaje = 'Propiedad creada.';
-    }
-
-
-        // 3) GALERÍA (hasta 8 fotos por envío)
-    if ($id_prop > 0 && !empty($_FILES['galeria']['name'][0])) {
-      $total = count($_FILES['galeria']['name']);
-      $ordenBase = 0;
-
-      // ahora permite hasta 8 fotos en la galería
-      for ($i = 0; $i < $total && $i < 8; $i++) {
-        if ($_FILES['galeria']['error'][$i] !== UPLOAD_ERR_OK) continue;
-
-        $safeName = time() . '_' . $i . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $_FILES['galeria']['name'][$i]);
+        $safeName = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $_FILES['foto_principal']['name']);
         $destino  = $baseDir . '/' . $safeName;
 
-        if (move_uploaded_file($_FILES['galeria']['tmp_name'][$i], $destino)) {
-          $archivo = 'uploads/propiedades/' . $safeName;
-          $orden   = $ordenBase + $i;
-
-          $stmt = $conn->prepare("INSERT INTO property_photos (property_id, archivo, orden)
-                                  VALUES (?,?,?)");
-          $stmt->bind_param('isi', $id_prop, $archivo, $orden);
-          $stmt->execute();
-          $stmt->close();
+        if (move_uploaded_file($_FILES['foto_principal']['tmp_name'], $destino)) {
+            $foto_principal = 'uploads/propiedades/' . $safeName;
         }
-      }
+    }
+
+    /* =============================
+        2) INSERT / UPDATE PROPIEDAD
+    ============================== */
+    if ($id_prop > 0) {
+
+        $sqlUpdate = "UPDATE properties
+            SET nombre=?, capacidad=?, recamaras=?, banos=?, estacionamiento=?,
+                descripcion_corta=?, descripcion_larga=?, ubicacion=?, distancia_mar=?,
+                servicios=?, indicaciones=?, enlace_drive=?, datos_contacto=?,
+                foto_principal=?, estado_base=?, categoria=? 
+            WHERE id=?";
+
+        $stmt = $conn->prepare($sqlUpdate);
+
+        $stmt->bind_param(
+            'siiissssssssssssi',
+            $nombreProp, $capacidad, $recamaras, $banos, $estacionamiento,
+            $desc_corta, $desc_larga, $ubicacion, $distancia,
+            $servicios, $indicaciones, $enlace_drive, $datos_contacto,
+            $foto_principal, $estado_base, $categoria, $id_prop
+        );
+
+        $stmt->execute();
+        $stmt->close();
+        $mensaje = 'Propiedad actualizada.';
+
+    } else {
+
+        $sqlInsert = "INSERT INTO properties
+            (nombre, capacidad, recamaras, banos, estacionamiento,
+             descripcion_corta, descripcion_larga, ubicacion, distancia_mar,
+             servicios, indicaciones, enlace_drive, datos_contacto,
+             foto_principal, estado_base, categoria)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        $stmt = $conn->prepare($sqlInsert);
+
+        $stmt->bind_param(
+            'siiissssssssssss',
+            $nombreProp, $capacidad, $recamaras, $banos, $estacionamiento,
+            $desc_corta, $desc_larga, $ubicacion, $distancia,
+            $servicios, $indicaciones, $enlace_drive, $datos_contacto,
+            $foto_principal, $estado_base, $categoria
+        );
+
+        $stmt->execute();
+        $id_prop = $stmt->insert_id;
+        $stmt->close();
+        $mensaje = 'Propiedad creada.';
+    }
+
+    /* ================================================================
+        3) GALERÍA TIPO SLIDER (las 8 fotos actuales)
+        — Estas se guardan como tipo = "slider"
+    ================================================================== */
+
+    if ($id_prop > 0 && !empty($_FILES['galeria']['name'][0])) {
+
+        $total = count($_FILES['galeria']['name']);
+
+        for ($i = 0; $i < $total && $i < 8; $i++) {
+
+            if ($_FILES['galeria']['error'][$i] !== UPLOAD_ERR_OK) continue;
+
+            $safeName = time() . '_SL_' . $i . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $_FILES['galeria']['name'][$i]);
+            $destino  = $baseDir . '/' . $safeName;
+
+            if (move_uploaded_file($_FILES['galeria']['tmp_name'][$i], $destino)) {
+
+                $archivo = 'uploads/propiedades/' . $safeName;
+
+                $stmt = $conn->prepare("INSERT INTO property_photos (property_id, archivo, tipo)
+                                        VALUES (?,?, 'slider')");
+                $stmt->bind_param('is', $id_prop, $archivo);
+                $stmt->execute();
+                $stmt->close();
+            }
+        }
     }
 
 
+    /* ================================================================
+        4) GALERÍA ESPECIAL DE 4 FOTOS
+        — Estas NO se mezclan con las anteriores
+        — Se guardan como tipo = "galeria"
+    ================================================================== */
+
+    if ($id_prop > 0 && !empty($_FILES['galeria4']['name'][0])) {
+
+        $total4 = count($_FILES['galeria4']['name']);
+
+        for ($i = 0; $i < $total4 && $i < 4; $i++) {
+
+            if ($_FILES['galeria4']['error'][$i] !== UPLOAD_ERR_OK) continue;
+
+            $safeName = time() . '_G4_' . $i . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $_FILES['galeria4']['name'][$i]);
+            $destino  = $baseDir . '/' . $safeName;
+
+            if (move_uploaded_file($_FILES['galeria4']['tmp_name'][$i], $destino)) {
+
+                $archivo = 'uploads/propiedades/' . $safeName;
+
+                $stmt = $conn->prepare("INSERT INTO property_photos (property_id, archivo, tipo)
+                                        VALUES (?,?, 'galeria')");
+                $stmt->bind_param('is', $id_prop, $archivo);
+                $stmt->execute();
+                $stmt->close();
+            }
+        }
+    }
+
     $view = 'casas';
-  }
+}
+
 
   /* Borrar propiedad */
   if ($action === 'delete_property') {
@@ -379,6 +392,7 @@ if ($id_prop > 0) {
     }
   }
 }
+
 
 /* Datos comunes para varias vistas */
 $lista_propiedades = [];
@@ -925,6 +939,13 @@ if ($view === 'casas' && isset($_GET['edit'])) {
                                style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;background:#f8fafc;">
                         <small>Puedes seleccionar varias fotos con Ctrl / Shift.</small>
                     </div>
+                    <div class="form-group" style="margin-top:15px;">
+    <label>Galería especial (máx. 4 fotos – se muestran debajo de la propiedad)</label>
+    <input type="file" name="galeria4[]" accept="image/*" multiple
+           style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;background:#f8fafc;">
+    <small>Estas fotos se mostrarán en la sección de “Galería” en la propiedad, separadas del carrusel principal.</small>
+</div>
+
 
                     <div class="form-group" style="margin-top:15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;">
                         <div>
@@ -964,27 +985,42 @@ if ($view === 'casas' && isset($_GET['edit'])) {
                     </button>
                 </form>
             </div>
+<?php if (!empty($prop_editar) && $fotos_existentes): ?>
+    <div class="content-section">
+        <h2>Galería actual</h2>
 
-            <?php if (!empty($prop_editar) && $fotos_existentes): ?>
-                <div class="content-section">
-                    <h2>Galería actual</h2>
-                    <div class="stats-container" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
-                        <?php foreach ($fotos_existentes as $foto): ?>
-                            <div class="stat-item">
-                                <img src="../<?php echo htmlspecialchars($foto['archivo']); ?>" alt=""
-                                     style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:10px;">
-                                <form method="post" class="inline-form" onsubmit="return confirm('¿Eliminar esta foto?');">
-                                    <input type="hidden" name="action" value="delete_photo">
-                                    <input type="hidden" name="id" value="<?php echo $foto['id']; ?>">
-                                    <button type="submit" class="btn btn-secondary small-link danger">
-                                        Borrar
-                                    </button>
-                                </form>
-                            </div>
-                        <?php endforeach; ?>
+        <!-- FORMULARIO QUE CONTIENE TODAS LAS IMÁGENES -->
+        <form method="post" onsubmit="return confirm('¿Eliminar las fotos seleccionadas?');">
+            <input type="hidden" name="action" value="delete_multiple_photos">
+
+            <div class="stats-container" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); margin-bottom:20px;">
+
+                <?php foreach ($fotos_existentes as $foto): ?>
+                    <div class="stat-item" style="position:relative;">
+
+                        <!-- Checkbox en esquina superior izquierda -->
+                        <input type="checkbox"
+                               name="delete_ids[]"
+                               value="<?php echo $foto['id']; ?>"
+                               class="delete-check"
+                               style="position:absolute;top:10px;left:10px;transform:scale(1.4);cursor:pointer;">
+
+                        <img src="../<?php echo htmlspecialchars($foto['archivo']); ?>" alt=""
+                             style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:10px;">
                     </div>
-                </div>
-            <?php endif; ?>
+                <?php endforeach; ?>
+
+            </div>
+
+            <!-- Botón debajo de todas las imágenes -->
+            <button type="submit" class="btn btn-secondary danger" style="padding:10px 18px;border-radius:10px;">
+                Borrar fotos seleccionadas
+            </button>
+
+        </form>
+    </div>
+<?php endif; ?>
+
 
             <div class="content-section">
                 <h2>Listado de propiedades</h2>

@@ -23,10 +23,7 @@
   const left = document.querySelector(".ve-left");
   const veSlides = document.querySelectorAll(".ve-slide");
 
-  if (!right || !left || veSlides.length === 0) {
-    console.log("Slider de inicio no está en esta página.");
-    return; // ← Evita el error
-  }
+  if (!right || !left || veSlides.length === 0) return;
 
   let index = 0;
 
@@ -51,8 +48,6 @@
   }, 6000);
 })();
 
-
-
 // ====== VALIDACIÓN DE CONTRASEÑA EN PANEL ======//
 (function () {
   const pwd = document.getElementById('passwordNueva');
@@ -73,8 +68,6 @@
     strength.textContent = msg;
   });
 })();
-
-
 
 // ====== SLIDER GALERÍA PROPIEDAD ======//
 (function () {
@@ -108,3 +101,59 @@
   goTo(0);
 })();
 
+
+// ====== LIGHTBOX CONTIENE NAVEGACIÓN Y CONTADOR ====== //
+document.addEventListener("DOMContentLoaded", function () {
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const btnPrev = document.querySelector('.lightbox-prev');
+  const btnNext = document.querySelector('.lightbox-next');
+  const counter = document.getElementById('lightbox-counter');
+
+  const images = [
+    ...document.querySelectorAll('.gallery-img'),
+    ...document.querySelectorAll('.slider-img')
+  ];
+
+  let currentIndex = 0;
+
+  function updateCounter() {
+    counter.textContent = `${currentIndex + 1} / ${images.length}`;
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    lightboxImg.src = images[currentIndex].src;
+    updateCounter();
+    lightbox.classList.add('active');
+  }
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) lightbox.classList.remove('active');
+  });
+
+  btnPrev.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+    updateCounter();
+  });
+
+  btnNext.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+    updateCounter();
+  });
+
+  images.forEach((img, i) => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => openLightbox(i));
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === "Escape") lightbox.classList.remove('active');
+  });
+
+});

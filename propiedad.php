@@ -98,10 +98,34 @@ while ($row = $resFotos->fetch_assoc()) {
 }
 $stmt->close();
 
-// Para el carrusel y la galería
-$slider_fotos = $fotos;  // SIN LÍMITE
+// Para el carrusel principal (tipo 'slider')
+$slider_fotos = [];
+$stmt = $conn->prepare("
+    SELECT archivo
+    FROM property_photos
+    WHERE property_id = ? AND tipo = 'slider'
+    ORDER BY id ASC
+");
+$stmt->bind_param("i", $prop['id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$slider_fotos = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
 
-$galeria_fotos = array_slice($fotos, 0, 4);
+//para la galeria 4 fts//
+$galeria_fotos = [];
+$stmt = $conn->prepare("
+    SELECT archivo, titulo
+    FROM property_photos
+    WHERE property_id = ? AND tipo = 'galeria'
+    ORDER BY id ASC
+");
+$stmt->bind_param("i", $prop['id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$galeria_fotos = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
 
 // Ítems para servicios e indicaciones
 $servicios_items    = split_items($prop['servicios'] ?? '');
@@ -135,9 +159,11 @@ $indicaciones_items = split_items($prop['indicaciones'] ?? '');
             <div class="slider-track" data-slider-track>
               <?php foreach ($slider_fotos as $foto): ?>
                 <div class="slide" data-slide>
-                  <img src="<?php echo htmlspecialchars($foto['archivo']); ?>"
-                       alt="<?php echo htmlspecialchars($foto['titulo']); ?>">
+                  <img class="slider-img"
+                    src="<?php echo htmlspecialchars($foto['archivo']); ?>"
+                    alt="<?php echo htmlspecialchars($foto['titulo']); ?>">
                 </div>
+
               <?php endforeach; ?>
             </div>
           </div>
@@ -283,19 +309,41 @@ $indicaciones_items = split_items($prop['indicaciones'] ?? '');
     </section>
 
   </section>
+  
+
+<?php
+  //CONSULTA PARA FOTOS DE LA GALERÍA (solo tipo 'galeria')
+
+  $galeria_fotos = [];
+  $stmt = $conn->prepare("
+      SELECT archivo, titulo
+      FROM property_photos
+      WHERE property_id = ? AND tipo = 'galeria'
+      ORDER BY id ASC
+  ");
+  $stmt->bind_param("i", $prop['id']);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $galeria_fotos = $result->fetch_all(MYSQLI_ASSOC);
+  $stmt->close();
+  ?>
+
 
   <!-- ====== GALERÍA ====== -->
   <section class="property-card property-gallery-card">
     <h2 class="section-title">Galería</h2>
+
     <?php if ($galeria_fotos): ?>
       <div class="gallery-grid">
         <?php foreach ($galeria_fotos as $foto): ?>
           <figure class="gallery-item">
-            <img src="<?php echo htmlspecialchars($foto['archivo']); ?>"
+            <img class="gallery-img"
+                 src="<?php echo htmlspecialchars($foto['archivo']); ?>"
                  alt="<?php echo htmlspecialchars($foto['titulo']); ?>">
           </figure>
         <?php endforeach; ?>
       </div>
+
     <?php else: ?>
       <p class="muted-text" style="margin-top:8px;">
         Aún no hay fotos adicionales para esta casa.
@@ -345,5 +393,22 @@ $indicaciones_items = split_items($prop['indicaciones'] ?? '');
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
 <script src="assets/app.js"></script>
+<div id="lightbox" class="lightbox">
+  
+  <!-- Contador -->
+  <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+
+  <!-- Flecha izquierda -->
+  <button class="lightbox-arrow lightbox-prev">‹</button>
+
+  <!-- Imagen -->
+  <img id="lightbox-img" src="" alt="">
+
+  <!-- Flecha derecha -->
+  <button class="lightbox-arrow lightbox-next">›</button>
+</div>
+
+
+
 </body>
 </html>
