@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-11-2025 a las 02:05:25
+-- Tiempo de generación: 05-12-2025 a las 15:26:55
 -- Versión del servidor: 8.0.17
 -- Versión de PHP: 7.3.10
 
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password_hash`, `nombre`, `correo`, `foto`, `pais`, `estado`, `fecha_hora_local`, `created_at`) VALUES
-(1, 'admin', '$2y$10$87DHvo7aJrG4eJ4Byc.t0O6SE9wH6/yUI1PewxxFzHmrydKAguQ/i', '', '', 'uploads/1763834370_Capturadepantalla2025-11-19142407.png', '', '', '2025-11-15 12:45:00', '2025-11-14 19:43:01');
+(1, 'admin', '$2y$10$87DHvo7aJrG4eJ4Byc.t0O6SE9wH6/yUI1PewxxFzHmrydKAguQ/i', 'Dimas', 'adimas2@ucol.mx', 'uploads/1764380066_Capturadepantalla2025-11-19142407.png', 'mexico', 'manzanillo', '2025-11-28 19:35:00', '2025-11-14 19:43:01');
 
 -- --------------------------------------------------------
 
@@ -100,14 +100,6 @@ CREATE TABLE `property_calendar` (
   `estado` enum('ocupada','no_disponible') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `property_calendar`
---
-
-INSERT INTO `property_calendar` (`id`, `property_id`, `fecha_inicio`, `fecha_fin`, `estado`) VALUES
-(6, 9, '2025-11-22', '2025-11-23', 'ocupada'),
-(7, 8, '2025-11-23', '2025-11-24', 'no_disponible');
-
 -- --------------------------------------------------------
 
 --
@@ -120,45 +112,9 @@ CREATE TABLE `property_photos` (
   `archivo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `titulo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `orden` int(11) DEFAULT '0',
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `tipo` enum('slider','galeria') COLLATE utf8mb4_general_ci DEFAULT 'slider'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `property_photos`
---
-
-INSERT INTO `property_photos` (`id`, `property_id`, `archivo`, `titulo`, `orden`, `created_at`) VALUES
-(26, 6, 'uploads/propiedades/1763779000_0_ac.jpg', NULL, 0, '2025-11-21 20:36:40'),
-(27, 6, 'uploads/propiedades/1763779000_1_b.jpg', NULL, 1, '2025-11-21 20:36:40'),
-(28, 6, 'uploads/propiedades/1763779000_2_bcd.jpg', NULL, 2, '2025-11-21 20:36:40'),
-(29, 6, 'uploads/propiedades/1763779000_3_ca.jpg', NULL, 3, '2025-11-21 20:36:40'),
-(30, 6, 'uploads/propiedades/1763779000_4_fff.jpg', NULL, 4, '2025-11-21 20:36:40'),
-(31, 6, 'uploads/propiedades/1763779000_5_h.jpg', NULL, 5, '2025-11-21 20:36:40'),
-(32, 6, 'uploads/propiedades/1763779000_6_hcc.jpg', NULL, 6, '2025-11-21 20:36:40'),
-(33, 6, 'uploads/propiedades/1763779000_7_if.jpg', NULL, 7, '2025-11-21 20:36:40'),
-(40, 8, 'uploads/propiedades/1763789099_0_b.jpg', NULL, 0, '2025-11-21 23:24:59'),
-(41, 8, 'uploads/propiedades/1763789099_1_d.jpg', NULL, 1, '2025-11-21 23:24:59'),
-(42, 8, 'uploads/propiedades/1763789099_2_l.jpg', NULL, 2, '2025-11-21 23:24:59'),
-(43, 8, 'uploads/propiedades/1763789099_3_t.jpg', NULL, 3, '2025-11-21 23:24:59'),
-(44, 8, 'uploads/propiedades/1763789099_4_tt.jpg', NULL, 4, '2025-11-21 23:24:59'),
-(45, 8, 'uploads/propiedades/1763789099_5_vv.jpg', NULL, 5, '2025-11-21 23:24:59'),
-(46, 8, 'uploads/propiedades/1763789099_6_za.jpg', NULL, 6, '2025-11-21 23:24:59'),
-(47, 8, 'uploads/propiedades/1763789099_7_zj.jpg', NULL, 7, '2025-11-21 23:24:59'),
-(56, 9, 'uploads/propiedades/1763834592_0_b.jpg', NULL, 0, '2025-11-22 12:03:12'),
-(57, 9, 'uploads/propiedades/1763834592_1_f.jpg', NULL, 1, '2025-11-22 12:03:12'),
-(58, 9, 'uploads/propiedades/1763834593_2_k.jpg', NULL, 2, '2025-11-22 12:03:13'),
-(59, 9, 'uploads/propiedades/1763834593_3_o.jpg', NULL, 3, '2025-11-22 12:03:13'),
-(60, 9, 'uploads/propiedades/1763834593_4_qq.jpg', NULL, 4, '2025-11-22 12:03:13'),
-(61, 9, 'uploads/propiedades/1763834593_5_s.jpg', NULL, 5, '2025-11-22 12:03:13'),
-(62, 9, 'uploads/propiedades/1763834593_6_nn.jpg', NULL, 6, '2025-11-22 12:03:13'),
-(63, 9, 'uploads/propiedades/1763834593_7_n.jpg', NULL, 7, '2025-11-22 12:03:13'),
-(64, 7, 'uploads/propiedades/1763948911_0_b.jpg', NULL, 0, '2025-11-23 19:48:31'),
-(65, 7, 'uploads/propiedades/1763948911_1_g.jpg', NULL, 1, '2025-11-23 19:48:31'),
-(66, 7, 'uploads/propiedades/1763948911_2_j.jpg', NULL, 2, '2025-11-23 19:48:31'),
-(67, 7, 'uploads/propiedades/1763948911_3_ll.jpg', NULL, 3, '2025-11-23 19:48:31'),
-(68, 7, 'uploads/propiedades/1763948911_4_p-2.jpg', NULL, 4, '2025-11-23 19:48:31'),
-(69, 7, 'uploads/propiedades/1763948911_6_v.jpg', NULL, 6, '2025-11-23 19:48:31'),
-(70, 7, 'uploads/propiedades/1763948912_7_x.jpg', NULL, 7, '2025-11-23 19:48:32');
 
 --
 -- Índices para tablas volcadas
@@ -217,7 +173,7 @@ ALTER TABLE `property_calendar`
 -- AUTO_INCREMENT de la tabla `property_photos`
 --
 ALTER TABLE `property_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- Restricciones para tablas volcadas
