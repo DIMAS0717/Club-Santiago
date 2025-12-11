@@ -13,7 +13,8 @@ body {
 }
 
 .cs-contact-section {
-  background: url("../assets/images/fondo_contact.JPG") center/cover no-repeat;
+  background: url("../assets/images/fondo_contact.JPG") center -70px / cover no-repeat;
+
   width: 100%;          
   min-height: 100vh;
   padding-top: 100px;
