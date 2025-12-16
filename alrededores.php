@@ -20,12 +20,22 @@ require __DIR__ . '/includes/db.php';
 
   <!-- TÍTULO + INTRO -->
   <section class="section around-header">
+
+  <div class="around-title-wrap">
+    <img src="assets/images/iconoeureka.png" class="around-title-deco" alt="">
     <h1 class="around-title">Alrededores</h1>
-    <p class="around-subtitle">
-      Descubre los servicios, actividades y experiencias que puedes disfrutar
-      cerca de nuestras casas en Club Santiago.
-    </p>
-  </section>
+    <img src="assets/images/iconoeureka.png" class="around-title-deco" alt="">
+  </div>
+
+  <span class="around-title-underline"></span>
+
+  <p class="around-subtitle">
+    Descubre los servicios, actividades y experiencias que puedes disfrutar
+    cerca de nuestras casas en Club Santiago.
+  </p>
+
+</section>
+
 
   <!-- MAPA DE SERVICIOS -->
   <section class="section around-map-section">
@@ -206,7 +216,39 @@ require __DIR__ . '/includes/db.php';
   </div>
 </section>
 
- 
+<section class="gallery-section">
+  <div class="gallery-header">
+    <h2>Galería de Club Santiago</h2>
+    <p>Un vistazo a lo que te espera en este paraíso frente al mar</p>
+  </div>
+
+  <div class="gallery-grid">
+    <!-- Imagen grande -->
+    <div class="gallery-item large" style="background-image:url('assets/images/ciclismo.jpg')">
+      <span>Playa La Boquita</span>
+    </div>
+
+    <!-- Imagen mediana -->
+    <div class="gallery-item medium" style="background-image:url('assets/images/golf.jpg')">
+      <span>Campo de Golf</span>
+    </div>
+
+    <!-- Imagen mediana -->
+    <div class="gallery-item medium" style="background-image:url('assets/images/playa.jpg')">
+      <span>Atardeceres Mágicos</span>
+    </div>
+
+    <!-- Imagen horizontal -->
+    <div class="gallery-item wide" style="background-image:url('assets/images/senderismo.png')">
+      <span>Marina</span>
+    </div>
+  </div>
+
+  <div class="gallery-cta">
+    <a href="#" class="btn-gallery">Ver galería completa</a>
+  </div>
+</section>
+
 
 </main>
 

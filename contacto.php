@@ -39,7 +39,7 @@ require __DIR__ . '/includes/db.php';
         <div class="cs-info-block">
           <div class="cs-icon"><i class="fas fa-envelope"></i></div>
           <div>
-            <p class="cs-label">Nuestro Email</p>
+            <p class="cs-label">Email</p>
             <p class="cs-detail">goyorealestate@gmail.com</p>
           </div>
         </div>
