@@ -33,7 +33,7 @@
 
 .around-title-underline {
   display: block;
-  width: 320px;
+  width: 333px;
   height: 6px;
   background: #173457;
   margin: -20px auto 28px auto;
@@ -333,7 +333,6 @@
 
 .gallery-section {
   padding: 80px 6%;
-  background: linear-gradient(to bottom, #f7f9fc, #ffffff);
 }
 
 .gallery-header {

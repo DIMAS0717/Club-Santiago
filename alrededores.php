@@ -41,7 +41,7 @@ require __DIR__ . '/includes/db.php';
   <section class="section around-map-section">
     <div class="around-map-card">
       <div class="around-map-info">
-        <h2 class="around-map-title">Mapa de Servicios y Puntos de Interés</h2>
+        <h2 class="around-map-title">Mapa de Servicios y <br> Puntos de Interés</h2>
         <ul class="around-map-list">
           <li>
             <span class="around-map-icon">🏥</span>
@@ -99,7 +99,7 @@ require __DIR__ . '/includes/db.php';
   <section class="section around-activities-section">
   <h2 class="around-section-title">Deportes</h2>
 
-  <div class="around-activities-grid">
+  <div class="around-activities-grid"> 
 
     <!-- Senderismo -->
     <article class="around-activity-card around-activity-hiking">
