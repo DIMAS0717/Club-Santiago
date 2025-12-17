@@ -66,10 +66,10 @@ require __DIR__ . '/includes/db.php';
         <div class="cs-socials">
           <p class="cs-label">Síguenos en Redes Sociales</p>
           <div class="cs-icons">
-            <a class="cs-social" href="https://www.facebook.com/villaseurekamanzanillo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a class="cs-social" href="https://www.instagram.com/villaseurekamanzanillo?igsh=bXR2c3o0Ync2cjF4" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a class="cs-social" href="https://wa.me/523141600430?text=Hola,%20me%20gustaría%20más%20información." target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a class="cs-social" href="https://www.tiktok.com/@villas.eureka" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a class="cs-social facebook" href="https://www.facebook.com/villaseurekamanzanillo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a class="cs-social instagram" href="https://www.instagram.com/villaseurekamanzanillo?igsh=bXR2c3o0Ync2cjF4" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="cs-social whatsapp" href="https://wa.me/523141600430?text=Hola,%20me%20gustaría%20más%20información." target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a class="cs-social tiktok" href="https://www.tiktok.com/@villas.eureka" target="_blank"><i class="fab fa-tiktok"></i></a>
           </div>
         </div>
 
@@ -77,7 +77,7 @@ require __DIR__ . '/includes/db.php';
 
       <!-- Formulario -->
       <form class="cs-right-panel" method="post" action="#">
-        <h3>Envíanos un Mensaje</h3>
+        <h3 style="margin-top: 5px">Envíanos un Mensaje</h3>
 
         <div class="cs-form-row">
           <input type="text" name="nombre" placeholder="Nombre" class="cs-input" required>
@@ -86,7 +86,7 @@ require __DIR__ . '/includes/db.php';
 
         <input type="email" name="email" placeholder="Correo electrónico" class="cs-input" required>
 
-        <textarea name="mensaje" placeholder="Mensaje / Fechas / Propiedad de interés" class="cs-input" required></textarea>
+        <textarea name="mensaje" placeholder="Mensaje / Fechas / Propiedad de interés.." class="cs-input" required></textarea>
 
         <button type="submit" class="cs-submit">Enviar Mensaje</button>
       </form>

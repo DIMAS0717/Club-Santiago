@@ -78,11 +78,24 @@
 }
 
 .around-map-title {
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 18px;
+  margin-bottom: 6px;
 }
+
+.around-map-title span {
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.around-map-divider {
+  width: 300px;              /* largo de la línea */
+  height: 1px;              /* grosor */
+  background: #0f172a;      /* color del título */
+  border-radius: 2px;
+  margin: 10px 0 18px 0;    /* espacio arriba y abajo */
+}
+
 
 .around-map-list {
   list-style: none;
@@ -91,21 +104,22 @@
 }
 
 .around-map-list li {
-  display: grid;
-  grid-template-columns: 32px 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 0;
-  font-size: 0.95rem;
-  color: #1f2933;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .around-map-icon {
-  font-size: 1.1rem;
+  width: 20px;
+  height: 20px;
+  color: #0f172a; /* CAMBIA AQUÍ EL COLOR */
+  flex-shrink: 0;
 }
 
 .around-map-time {
-  font-weight: 500;
+  margin-left: auto;
+  font-size: 0.85rem;
   color: #0f172a;
 }
 
@@ -115,6 +129,10 @@
   border-radius: 18px;
   object-fit: cover;
 }
+.around-map-list li:hover .around-map-icon {
+  color: #0ea5e9;
+}
+
 
 /* Chips de servicios */
 
