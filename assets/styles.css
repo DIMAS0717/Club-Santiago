@@ -56,6 +56,7 @@ body.dark {
 
 body {
   margin: 0;
+  padding-top: 160px;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg-page);
   color: var(--text-main);
