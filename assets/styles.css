@@ -837,95 +837,188 @@ textarea {
   border: 1px solid var(--border-subtle);
 }
 
-/* ====== GRID DE PROPIEDADES (RENTAS / VENTAS / VILLAS) ====== */
-
+/* ==========================================================================
+   1. GRID Y ESTRUCTURA GENERAL
+   ========================================================================== */
 .home-property-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columnas fijo */
-  gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 1fr es más estándar que 2fr para mitades */
+    gap: 24px;
 }
 
-/* En pantallas pequeñas: 1 columna */
 @media (max-width: 768px) {
-  .home-property-grid {
-    grid-template-columns: 1fr;
-  }
+    .home-property-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* 1. Tarjeta con efecto de Brinco (Lift) */
+/* ==========================================================================
+   2. TARJETA (EFECTOS Y ELEVACIÓN)
+   ========================================================================== */
 .home-property-card {
-  background: var(--bg-card);
-  border-radius: 18px;
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.45);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  
-  /* Transición para el brinco y la sombra */
-  transition: transform 2.0s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-  cursor: pointer;
+    background: var(--bg-card);
+    border-radius: 18px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 2.0s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease-in-out;
+    cursor: pointer;
 }
 
-/* Al pasar el ratón: Brinco y sombra más profunda */
 .home-property-card:hover {
-  transform: translateY(-10px); /* El minibrinco */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* 2. Wrapper y dimensiones de imagen */
+/* ==========================================================================
+   3. CONTENEDOR DE IMÁGENES Y DESLIZAMIENTO
+   ========================================================================== */
 .home-property-img-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px 12px 0 0; 
+    position: relative;
+    height: 230px;
+    overflow: hidden;
+    border-radius: 18px 18px 0 0;
+    background: #000;
 }
 
-.home-property-img {
-  width: 100%;
-  height: 230px;
-  object-fit: cover;
-  display: block;
+.img-front {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    transition: transform 1.4s ease-in-out, filter 2s ease;
 }
 
-/* 3. Efecto de oscurecer y recuperación de color lenta */
+.img-back-pool {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Deslizamiento activado por JavaScript (.show-pool) */
+.home-property-img-wrapper.show-pool .img-front {
+    transform: translateX(-100%);
+}
+
+/* ==========================================================================
+   4. FILTROS DE COLOR (GRIS / DISPONIBILIDAD)
+   ========================================================================== */
 .img-no-disponible {
-  filter: grayscale(100%) brightness(0.5); /* Empieza muy oscura y sin color */
-  transition: filter 2.0s ease-in-out; /* Recuperación de color "poco a poco" */
+    filter: grayscale(80%) brightness(0.6);
 }
 
-/* Cuando el mouse entra a la carta, la imagen recupera TODO su color */
+/* Al pasar el mouse recupera color (70% color, 30% gris aprox) */
 .home-property-card:hover .img-no-disponible {
-  filter: grayscale(60%) brightness(0.75); /* Color total y brillo normal */
+    filter: grayscale(30%) brightness(0.75);
 }
 
-/* 4. Etiquetas de disponibilidad con Punto Luminoso */
+/* ==========================================================================
+   5. BOTÓN CIRCULAR "VER ALBERCA" (DERECHA)
+   ========================================================================== */
+.btn-view-pool {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 30; /* Prioridad máxima de click */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.btn-view-pool:hover {
+    transform: scale(1.1);
+    background: #1e293b;
+}
+
+/* ==========================================================================
+   6. ETIQUETAS DE ESTADO Y CAPACIDAD (IZQUIERDA)
+   ========================================================================== */
+
+/* Chip de Estado (Arriba) */
 .card-status-chip {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 20;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(8px);
+    z-index: 20;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .card-status-chip::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: status-pulse 1.5s infinite;
 }
 
+/* Colores del punto */
+.disponible::before { background-color: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.no_disponible::before { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; }
+.ocupada::before { background-color: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+
+@keyframes status-pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Círculo de Capacidad (Abajo) */
+.capacity-circle {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 20;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* ==========================================================================
+   7. OPTIMIZACIÓN MÓVIL (TÁCTIL)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Deslizamiento al tocar la tarjeta en celular (Efecto Quick View) */
+    .home-property-card:active .img-front,
+    .home-property-card:focus .img-front {
+        transform: translateX(-90%);
+    }
+
+    .btn-view-pool {
+        width: 44px; /* Área táctil más grande */
+        height: 44px;
+    }
+}
 /* --- COLORES DE LAS ETIQUETAS --- */
 
 /* Disponible */
@@ -1013,46 +1106,57 @@ textarea {
 
 
 
-/*personas dentro de la imagen===================*/
+/* --- CIRCULO DE CAPACIDAD ESTILO GLASS --- */
 .capacity-circle {
   position: absolute;
   left: 1rem;
   bottom: 1rem;
   
-  width: 42px;          /* MÁS PEQUEÑO */
-  height: 42px;
+  width: 40px; 
+  height: 40px;
   
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);   /* Fondo semi-transparente, no “blocoso” */
-  backdrop-filter: blur(4px);
+  /* Fondo transparente con mucho desenfoque */
+  background: rgba(0, 0, 0, 0.3); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-  border: 1.5px solid rgba(0, 0, 0, 0.15); /* LÍNEA DELGADA Y ELEGANTE */
+  /* Borde tipo cristal (blanco traslúcido) */
+  border: 1px solid rgba(255, 255, 255, 0.3); 
   
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18); /* sombra suave */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 1px;
+  transition: all 0.5s ease; /* Para que reaccione al hover de la card */
 }
 
-/* ICONO pequeño */
+/* ICONO: Ahora blanco y más nítido */
 .capacity-circle-icon {
   width: 14px;
   height: 14px;
-  opacity: 0.85;
-  color: #111827;
+  color: #ffffff; /* Blanco */
+  opacity: 1;
 }
 
-
-
-/* NÚMERO centrado y más delgado */
+/* NÚMERO: Blanco y legible */
 .capacity-circle-number {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #111827;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff; /* Blanco */
+  line-height: 1;
 }
+
+/* EXTRA: Que brille un poco cuando pases el mouse por la tarjeta */
+.home-property-card:hover .capacity-circle {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.05); /* Un micro-crecimiento */
+}
+
 
 
 /* =========================================================

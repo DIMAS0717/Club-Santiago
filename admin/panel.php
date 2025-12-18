@@ -181,8 +181,10 @@ if ($action === 'save_property') {
     $estado_base = $_POST['estado_base'] ?? 'disponible';
     $categoria   = $_POST['categoria'] ?? 'renta';
 
-    // Foto principal en edición
+    // Foto principal en edición//
     $foto_principal = $_POST['foto_actual'] ?? '';
+    // foto secundaria//
+    $foto_alberca = $_POST['foto_alberca_actual'] ?? '';
 
     // Carpeta para archivos
     $baseDir = __DIR__ . '/../uploads/propiedades';
@@ -199,6 +201,17 @@ if ($action === 'save_property') {
             $foto_principal = 'uploads/propiedades/' . $safeName;
         }
     }
+    /* =============================
+    1.1) SUBIR FOTO ALBERCA
+============================== */
+if (!empty($_FILES['foto_alberca']['name'])) {
+    $safeNamePool = time() . '_pool_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $_FILES['foto_alberca']['name']);
+    $destinoPool  = $baseDir . '/' . $safeNamePool;
+
+    if (move_uploaded_file($_FILES['foto_alberca']['tmp_name'], $destinoPool)) {
+        $foto_alberca = 'uploads/propiedades/' . $safeNamePool;
+    }
+}
 
     /* =============================
         2) INSERT / UPDATE PROPIEDAD
@@ -206,21 +219,22 @@ if ($action === 'save_property') {
     if ($id_prop > 0) {
 
         $sqlUpdate = "UPDATE properties
-            SET nombre=?, capacidad=?, recamaras=?, banos=?, estacionamiento=?,
-                descripcion_corta=?, descripcion_larga=?, ubicacion=?, distancia_mar=?,
-                servicios=?, indicaciones=?, enlace_drive=?, datos_contacto=?,
-                foto_principal=?, estado_base=?, categoria=? 
-            WHERE id=?";
+    SET nombre=?, capacidad=?, recamaras=?, banos=?, estacionamiento=?,
+        descripcion_corta=?, descripcion_larga=?, ubicacion=?, distancia_mar=?,
+        servicios=?, indicaciones=?, enlace_drive=?, datos_contacto=?,
+        foto_principal=?, foto_alberca=?, estado_base=?, categoria=?  /* <-- Añadido foto_alberca */
+    WHERE id=?";
 
-        $stmt = $conn->prepare($sqlUpdate);
+$stmt = $conn->prepare($sqlUpdate);
 
-        $stmt->bind_param(
-            'siiissssssssssssi',
-            $nombreProp, $capacidad, $recamaras, $banos, $estacionamiento,
-            $desc_corta, $desc_larga, $ubicacion, $distancia,
-            $servicios, $indicaciones, $enlace_drive, $datos_contacto,
-            $foto_principal, $estado_base, $categoria, $id_prop
-        );
+// Agregamos una "s" más al string de tipos (ahora son 17 's'/'i' antes del id)
+$stmt->bind_param(
+    'siiisssssssssssssi', 
+    $nombreProp, $capacidad, $recamaras, $banos, $estacionamiento,
+    $desc_corta, $desc_larga, $ubicacion, $distancia,
+    $servicios, $indicaciones, $enlace_drive, $datos_contacto,
+    $foto_principal, $foto_alberca, $estado_base, $categoria, $id_prop
+);
 
         $stmt->execute();
         $stmt->close();
@@ -229,21 +243,21 @@ if ($action === 'save_property') {
     } else {
 
         $sqlInsert = "INSERT INTO properties
-            (nombre, capacidad, recamaras, banos, estacionamiento,
-             descripcion_corta, descripcion_larga, ubicacion, distancia_mar,
-             servicios, indicaciones, enlace_drive, datos_contacto,
-             foto_principal, estado_base, categoria)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    (nombre, capacidad, recamaras, banos, estacionamiento,
+     descripcion_corta, descripcion_larga, ubicacion, distancia_mar,
+     servicios, indicaciones, enlace_drive, datos_contacto,
+     foto_principal, foto_alberca, estado_base, categoria) /* <-- Añadido */
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; /* <-- Un '?' más (ahora son 17) */
 
-        $stmt = $conn->prepare($sqlInsert);
+$stmt = $conn->prepare($sqlInsert);
 
-        $stmt->bind_param(
-            'siiissssssssssss',
-            $nombreProp, $capacidad, $recamaras, $banos, $estacionamiento,
-            $desc_corta, $desc_larga, $ubicacion, $distancia,
-            $servicios, $indicaciones, $enlace_drive, $datos_contacto,
-            $foto_principal, $estado_base, $categoria
-        );
+$stmt->bind_param(
+    'siiisssssssssssss', // 17 letras
+    $nombreProp, $capacidad, $recamaras, $banos, $estacionamiento,
+    $desc_corta, $desc_larga, $ubicacion, $distancia,
+    $servicios, $indicaciones, $enlace_drive, $datos_contacto,
+    $foto_principal, $foto_alberca, $estado_base, $categoria
+);
 
         $stmt->execute();
         $id_prop = $stmt->insert_id;
@@ -912,27 +926,43 @@ if ($view === 'casas' && isset($_GET['edit'])) {
                                style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;">
                     </div>
 
-                    <div class="form-group" style="margin-top:15px;">
-                        <label>Datos de contacto (teléfono, WhatsApp)</label>
-                        <input type="text" name="datos_contacto"
-                               value="<?php echo htmlspecialchars($prop_editar['datos_contacto'] ?? ''); ?>"
-                               style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;">
-                    </div>
+                   <div class="form-group" style="margin-top:15px;">
+    <label>Datos de contacto (teléfono, WhatsApp)</label>
+    <input type="text" name="datos_contacto"
+           value="<?php echo htmlspecialchars($prop_editar['datos_contacto'] ?? ''); ?>"
+           style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;">
+</div>
 
-                    <div class="form-group" style="margin-top:15px;">
-                        <label>Foto principal</label>
-                        <input type="file" name="foto_principal" accept="image/*"
-                               style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;background:#f8fafc;">
-                        <?php if (!empty($prop_editar['foto_principal'])): ?>
-                            <small>
-                                Actual:
-                                <a href="../<?php echo htmlspecialchars($prop_editar['foto_principal']); ?>" target="_blank">
-                                    Ver foto
-                                </a>
-                            </small>
-                        <?php endif; ?>
-                    </div>
+<div class="form-group" style="margin-top:15px;">
+    <label>Foto principal (Fachada)</label>
+    <input type="file" name="foto_principal" accept="image/*"
+           style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;background:#f8fafc;">
+    
+    <input type="hidden" name="foto_actual" 
+           value="<?php echo htmlspecialchars($prop_editar['foto_principal'] ?? ''); ?>">
 
+    <?php if (!empty($prop_editar['foto_principal'])): ?>
+        <small style="display:block; margin-top:5px;">
+            Actual Principal:
+            <a href="../<?php echo htmlspecialchars($prop_editar['foto_principal']); ?>" target="_blank">Ver foto</a>
+        </small>
+    <?php endif; ?>
+</div>
+<div class="form-group" style="margin-top:15px;">
+    <label>Foto de la Alberca (Vista rápida en catálogo)</label>
+    <input type="file" name="foto_alberca" accept="image/*"
+           style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;background:#f8fafc;">
+    
+    <input type="hidden" name="foto_alberca_actual" 
+           value="<?php echo htmlspecialchars($prop_editar['foto_alberca'] ?? ''); ?>">
+
+    <?php if (!empty($prop_editar['foto_alberca'])): ?>
+        <small style="display:block; margin-top:5px;">
+            Actual Alberca: 
+            <a href="../<?php echo htmlspecialchars($prop_editar['foto_alberca']); ?>" target="_blank">Ver foto</a>
+        </small>
+    <?php endif; ?>
+</div>
                     <div class="form-group" style="margin-top:15px;">
                         <label>Galería (máx. 7 fotos por subida)</label>
                         <input type="file" name="galeria[]" accept="image/*" multiple

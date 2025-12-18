@@ -157,3 +157,29 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
+// Esperar a que el documento esté cargado
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Seleccionamos todos los botones de "Ver Alberca"
+    const poolButtons = document.querySelectorAll('.btn-view-pool');
+
+    poolButtons.forEach(boton => {
+        boton.addEventListener('click', function(e) {
+            // 1. Evitamos que el navegador siga el enlace <a> de la tarjeta
+            e.preventDefault(); 
+            
+            // 2. Evitamos que el clic se propague a otros elementos
+            e.stopPropagation(); 
+
+            // 3. Buscamos el contenedor padre (el wrapper de la imagen)
+            const wrapper = this.closest('.home-property-img-wrapper');
+            
+            // 4. Alternamos la clase para deslizar la imagen
+            if (wrapper) {
+                wrapper.classList.toggle('show-pool');
+            }
+        });
+    });
+
+});
