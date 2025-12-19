@@ -133,186 +133,6 @@
   color: #0ea5e9;
 }
 
-
-/* Chips de servicios */
-
-.around-chips-section {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.around-section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #173457;
-  margin-bottom: 18px;
-}
-
-.around-chips-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-
-.around-chip {
-  border: none;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: default;
-  color: #0f172a;
-}
-
-/* ACTIVIDADES DESTACADAS */
-
-/* ==== FONDOS PARA CADA ACTIVIDAD ==== */
-
-.around-activity-hiking {
-  background-image: url("./images/senderismo.png");
-}
-
-.around-activity-beach {
-  background-image: url("./images/playa.jpg");
-}
-
-.around-activity-golf {
-  background-image: url("./images/golf.jpg");
-}
-.around-activity-cycling {
-  background-image: url("./images/ciclismo.jpg");
-}
-
-
-
-.around-activities-section {
-  margin-top: 50px;
-}
-
-.around-activities-grid {
-  margin-top: 22px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.around-activity-card {
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  min-height: 320px;
-  background-size: cover;
-  background-position: center center;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
-}
-
-.around-activity-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.1));
-  padding: 20px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.around-activity-overlay h3 {
-  color: #ffffff;
-  font-size: 1.4rem;
-  margin: 0;
-}
-
-.around-activity-overlay p {
-  color: #e2e8f0;
-  font-size: 0.9rem;
-  max-width: 90%;
-}
-
-.around-btn {
-  align-self: flex-start;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #0f172a;
-  font-size: 0.88rem;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-/* Badges */
-
-.around-activity-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-/* ============================= */
-/*    EXPERIENCIAS RECOMENDADAS  */
-/* ============================= */
-
-.around-experiences-section {
-  margin-top: 50px;
-}
-
-.around-experiences-grid {
-  margin-top: 22px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-/* Card general */
-.around-experience-card {
-  background: #ffffff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-  display: flex;
-  flex-direction: column;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.around-experience-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 55px rgba(15, 23, 42, 0.18);
-}
-
-/* Imagen */
-.around-experience-image img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-/* Contenido */
-.around-experience-body {
-  padding: 18px 20px;
-}
-
-.around-experience-body h3 {
-  margin: 0 0 6px;
-  color: #173457;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.around-experience-body p {
-  color: #334155;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-
 /* ==== MODAL FULLSCREEN PARA MAPA ==== */
 
 .map-modal {
@@ -347,6 +167,191 @@
   cursor: pointer;
   transition: 0.3s;
 }
+
+/*Titulos(Deportes,EXP recom, Restaurantes)*/
+.around-section-title {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 1.8rem; /* Tamaño equilibrado, no más grande que el principal */
+    font-weight: 600;
+    color: #173457;    /* El azul oscuro de tu marca */
+    margin-top: 50px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+/* La línea decorativa con el estilo del header */
+.around-section-title::after {
+    content: "";
+    display: block;
+    width: 60px;       /* Ancho de la línea */
+    height: 4px;       /* Grosor de la línea */
+    
+    /* Usamos el degradado de tu header con un toque de transparencia (0.9) */
+    background: linear-gradient(90deg, rgba(190, 233, 158, 0.9), rgba(23, 52, 87, 0.9));
+    
+    /* Opcional: efecto de desenfoque si quieres que sea igual al header.scrolled */
+    backdrop-filter: blur(5px);
+    
+    margin: 12px auto 0; /* Centra la línea */
+    border-radius: 10px; /* Bordes redondeados para suavizar */
+}
+
+
+/* ACTIVIDADES DESTACADAS */
+
+/* ==== FONDOS PARA CADA ACTIVIDAD ==== */
+
+.around-activity-hiking {
+  background-image: url("./images/senderismo.png");
+}
+
+.around-activity-beach {
+  background-image: url("./images/playa.jpg");
+}
+
+.around-activity-golf {
+  background-image: url("./images/golf.jpg");
+}
+.around-activity-cycling {
+  background-image: url("./images/ciclismo.jpg");
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-header span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #2d6a4f; /* Verde */
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* 1. Aplicación de Montserrat a la sección */
+.around-activities-section {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 50px;
+}
+.around-activities-section, 
+.around-experiences-section {
+    padding: 30px 0; /* Da espacio arriba y abajo de cada bloque */
+}
+
+.around-activities-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* 2. Configuración de la Carta */
+.around-activity-card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center center;
+    
+    /* Transición suave para el salto y la sombra */
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(10, 15, 27, 0.1);
+    cursor: pointer;
+}
+/* 3. EL SALTO (Efecto Hover) */
+.around-activity-card:hover {
+    /* El valor negativo es el que hace que "salte" hacia arriba */
+    transform: translateY(-5px); 
+    /* La sombra se expande para dar sensación de altura */
+    box-shadow: 0 25px 50px rgba(10, 15, 26, 0.25); 
+}
+
+.around-activity-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.1));
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.around-activity-overlay p {
+  font-family: 'Montserrat', sans-serif;
+    color: #e6e9ee;
+    font-size: 0.92rem;
+    font-weight: 400; /* Peso regular para el párrafo */
+    line-height: 1.7;
+    letter-spacing: 0.2px;
+}
+
+/* 4. Estilos de Texto para Montserrat */
+.around-activity-overlay h3 {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 800; /* Montserrat se ve muy bien en pesos pesados */
+    margin: 0;
+    letter-spacing: -0.5px; /* Ajuste sutil para que el título se vea más premium */
+}
+
+.around-btn {
+    align-self: flex-start;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: transparent; /* Quitamos el fondo blanco */
+    color: #ffffff;          /* Texto en blanco */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+
+.around-btn:hover {
+    background: #ffffff;    /* Se llena al pasar el mouse */
+    color: #0f172a;
+    border-color: #ffffff;
+}
+
+/* Badges */
+
+.around-activity-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.around-activity-badge {
+    background: rgba(255, 255, 255, 0.2); /* Fondo blanco casi transparente */
+    backdrop-filter: blur(4px);            /* Efecto de vidrio esmerilado */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+}
+/* Imágenes de Experiencias */
+.experience-banana { background-image: url("./images/playa.jpg"); }
+.experience-sunset { background-image: url("./images/atardecer.jpeg"); }
+.experience-food { background-image: url("./images/comida.jpeg"); }
+
+/* Imágenes de Restaurantes */
+.restaurant-oasis { background-image: url("assets/images/oasis.jpg"); }
+.restaurant-delfos { background-image: url("assets/images/delfos.jpg"); }
+.restaurant-eureka { background-image: url("assets/images/eureka-tienda.jpg"); }
+
+
 /*===========================================Seccion galeria alredeodres===================*/
 
 .gallery-section {

@@ -12,6 +12,7 @@ require __DIR__ . '/includes/db.php';
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <?php include __DIR__ . '/includes/header.php'; ?>
@@ -131,7 +132,6 @@ c164 5 213 10 293 30 338 87 595 359 664 704 14 68 15 204 13 1114 l-3 1035
     <span>Playas</span>
     <span class="around-map-time">2 min</span>
   </li>
-
 </ul>
 
       </div>
@@ -146,29 +146,19 @@ c164 5 213 10 293 30 338 87 595 359 664 704 14 68 15 204 13 1114 l-3 1035
   <img class="map-modal-content" id="mapModalImg">
 </div>
 
-  </section>
-
-  <!-- PÍLDORAS DE SERVICIOS -->
-  <section class="section around-chips-section">
-    <h2 class="around-section-title">Servicios cercanos</h2>
-    <div class="around-chips-row">
-      <button class="around-chip">🏥 Hospital</button>
-      <button class="around-chip">🛒 Supermercado</button>
-      <button class="around-chip">⛽ Gasolinera</button>
-      <button class="around-chip">🍽️ Restaurantes</button>
-      <button class="around-chip">🏖️ Playas</button>
-    </div>
-  </section>
+</section>
 
   <!--Deportes -->
-  <section class="section around-activities-section">
-  <h2 class="around-section-title">Deportes</h2>
+  <div class="section-header">
+    <span>ACTIVIDADES AL AIRE LIBRE</span>
+    <h2 class="around-section-title">Deportes</h2>
+  </div>
 
   <div class="around-activities-grid"> 
 
     <!-- Senderismo -->
     <article class="around-activity-card around-activity-hiking">
-      <div class="around-activity-badge badge-green">Naturaleza</div>
+      <div class="around-activity-badge badge-green">Deportes</div>
       <div class="around-activity-overlay">
         <h3>Senderismo</h3>
         <p>Rutas para disfrutar de la naturaleza y miradores espectaculares.</p>
@@ -178,7 +168,7 @@ c164 5 213 10 293 30 338 87 595 359 664 704 14 68 15 204 13 1114 l-3 1035
 
     <!-- Golf -->
     <article class="around-activity-card around-activity-golf">
-      <div class="around-activity-badge badge-gray">Deporte</div>
+      <div class="around-activity-badge badge-green">Deporte</div>
       <div class="around-activity-overlay">
         <h3>Golf</h3>
         <p>Campo de golf cercano ideal para practicar o disfrutar con amigos.</p>
@@ -188,7 +178,7 @@ c164 5 213 10 293 30 338 87 595 359 664 704 14 68 15 204 13 1114 l-3 1035
 
     <!-- Ciclismo (NUEVO) -->
     <article class="around-activity-card around-activity-cycling">
-      <div class="around-activity-badge badge-green">Aventura</div>
+      <div class="around-activity-badge badge-green">Deportes</div>
       <div class="around-activity-overlay">
         <h3>Ciclismo</h3>
         <p>Rutas seguras para recorrer en bicicleta y disfrutar el paisaje.</p>
@@ -199,85 +189,73 @@ c164 5 213 10 293 30 338 87 595 359 664 704 14 68 15 204 13 1114 l-3 1035
   </div>
 </section>
 <!--Experiencias Recomendadas -->
-<section class="section around-experiences-section">
-  <h2 class="around-section-title">Experiencias recomendadas</h2>
+<section class="section around-activities-section">
+  <div class="section-header">
+    <h2 class="around-section-title">Experiencias recomendadas</h2>
+  </div>
 
-  <div class="around-experiences-grid">
-
-    <!-- Banana -->
-    <article class="around-experience-card">
-      <div class="around-experience-image">
-        <img src="assets/images/banana-playa.jpg" alt="Banana en la playa">
-      </div>
-      <div class="around-experience-body">
-        <h3>Banana en la playa</h3>
+  <div class="around-activities-grid"> 
+    <article class="around-activity-card experience-banana">
+      <div class="around-activity-badge">Diversión</div>
+      <div class="around-activity-overlay">
+        <h3>Playas</h3>
         <p>Actividad divertida para grupos y familias con vista al mar.</p>
+        <a href="#" class="around-btn">Ver más →</a>
       </div>
     </article>
 
-    <!-- Atardecer -->
-    <article class="around-experience-card">
-      <div class="around-experience-image">
-        <img src="assets/images/atardecer-club-santiago.jpg" alt="Atardecer">
-      </div>
-      <div class="around-experience-body">
-        <h3>Mejor punto para ver el atardecer</h3>
+    <article class="around-activity-card experience-sunset">
+      <div class="around-activity-badge">Relax</div>
+      <div class="around-activity-overlay">
+        <h3>Ver el atardecer</h3>
         <p>Fotografías increíbles y momentos únicos en la bahía.</p>
+        <a href="#" class="around-btn">Ver más →</a>
       </div>
     </article>
 
-    <!-- Comida típica -->
-    <article class="around-experience-card">
-      <div class="around-experience-image">
-        <img src="assets/images/comida.png" alt="Comidas típicas">
-      </div>
-      <div class="around-experience-body">
-        <h3>Comidas típicas enramadas locales</h3>
+    <article class="around-activity-card experience-food">
+      <div class="around-activity-badge">Sabor</div>
+      <div class="around-activity-overlay">
+        <h3>Comidas típicas</h3>
         <p>Platillos tradicionales y mariscos frescos frente al mar.</p>
+        <a href="#" class="around-btn">Ver más →</a>
       </div>
     </article>
-
   </div>
 </section>
-<!--RESTTAURANTES-->
-<section class="section around-experiences-section">
-  <h2 class="around-section-title">Restaurantes</h2>
 
-  <div class="around-experiences-grid">
+<section class="section around-activities-section">
+  <div class="section-header">
+    <h2 class="around-section-title">Restaurantes</h2>
+  </div>
 
-    <!-- Oasis -->
-    <article class="around-experience-card">
-      <div class="around-experience-image">
-        <img src="assets/images/oasis.jpg" alt="Restaurante Oasis">
-      </div>
-      <div class="around-experience-body">
+  <div class="around-activities-grid"> 
+    <article class="around-activity-card restaurant-oasis">
+      <div class="around-activity-badge">Gastronomía</div>
+      <div class="around-activity-overlay">
         <h3>Restaurante OASIS</h3>
         <p>Ambiente agradable y comida fresca con vista al mar.</p>
+        <a href="#" class="around-btn">Ver más →</a>
       </div>
     </article>
 
-    <!-- Delfos -->
-    <article class="around-experience-card">
-      <div class="around-experience-image">
-        <img src="assets/images/delfos.jpg" alt="Restaurante Delfos">
-      </div>
-      <div class="around-experience-body">
+    <article class="around-activity-card restaurant-delfos">
+      <div class="around-activity-badge">Mariscos</div>
+      <div class="around-activity-overlay">
         <h3>Restaurante Delfos</h3>
         <p>Especialidades del mar, pescados y mariscos de calidad.</p>
+        <a href="#" class="around-btn">Ver más →</a>
       </div>
     </article>
 
-    <!-- Eureka -->
-    <article class="around-experience-card">
-      <div class="around-experience-image">
-        <img src="assets/images/eureka-tienda.jpg" alt="Tienda Eureka">
-      </div>
-      <div class="around-experience-body">
+    <article class="around-activity-card restaurant-eureka">
+      <div class="around-activity-badge">Local</div>
+      <div class="around-activity-overlay">
         <h3>Tienda Eureka</h3>
         <p>Tienda local con artesanías y productos típicos de la región.</p>
+        <a href="#" class="around-btn">Ver más →</a>
       </div>
     </article>
-
   </div>
 </section>
 
