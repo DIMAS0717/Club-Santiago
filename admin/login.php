@@ -58,29 +58,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <title>Login admin - Club Santiago</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="../assets/log.css">
 </head>
 <body class="admin-body">
+  <img src="../assets/images/fondo_login.jpg" alt="Fondo" class="bg-image-tag">
+  <a href="../index.php" class="boton-inicio">
+    <img src="../assets/images/logofoter.png" alt="Ir a Inicio">
+  </a>
+  
+  <div class="bg-overlay"></div>
+
   <div class="admin-login-wrapper">
     <form class="admin-login-card" method="post">
-      <h1>Administrador</h1>
-      <p style="font-size:12px; color:#9ca3af; margin:0 0 6px;">
-        Usuario por defecto: <strong>admin</strong> · Contraseña: <strong>admin123</strong>
-      </p>
+      <div class="card-header">
+        <h1>Iniciar Sesión</h1>
+        <p style="color: #8c0606;">Ingresa tus datos solo tienes dos intentos</p>
+      </div>
+
       <?php if ($error): ?>
         <p class="form-error"><?php echo htmlspecialchars($error); ?></p>
       <?php endif; ?>
 
-      <label>Usuario
-        <input type="text" name="username" required>
-      </label>
+      <div class="input-group">
+        <input type="text" name="username" placeholder="Nombre de usuario" required>
+      </div>
 
-      <label>Contraseña
-        <input type="password" name="password" required>
-      </label>
+      <div class="input-group">
+        <input type="password" name="password" placeholder="Contraseña" required>
+      </div>
 
-      <button type="submit" class="btn-primary">Entrar</button>
-      <a href="../index.php" class="btn-ghost small">Volver al sitio</a>
+      <button type="submit" class="btn-submit">Entrar</button>
+      
+      <div class="card-footer">
+        <a href="../index.php" class="link-back">Volver al sitio principal</a>
+      </div>
     </form>
   </div>
 </body>

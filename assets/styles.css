@@ -155,7 +155,7 @@ body {
 .btn-ghost {
   background: transparent;
   color: var(--text-main);
-  border: 1px dashed rgba(148,163,184,.6);
+  border: 1px dashed rgba(128, 24, 10, 0.6);
 }
 
 /* =========================================================
@@ -621,11 +621,6 @@ textarea {
   color:#bbf7d0;
 }
 
-.status-ocupada{
-  border-color:#f9731633;
-  background:#ea580833;
-  color:#fed7aa;
-}
 
 .status-no_disponible{
   border-color:#6b728033;
@@ -723,7 +718,14 @@ textarea {
   font-size:13px;
   padding:8px 10px;
 }
-
+.aviso-temporada {
+    color: #d9534f;         /* Un rojo elegante, no tan chillón */
+    font-size: 0.85rem;     /* Un poco más pequeño que el texto normal */
+    margin-top: 15px;       /* Separación de los botones de arriba */
+    font-weight: 500;       /* Seminegrita para que se lea bien */
+    text-align: center;     /* Centrado en el recuadro */
+    font-style: italic;     /* Cursiva para indicar que es una nota aclaratoria */
+}
 /* ----- Lista con bullets para indicaciones y reglas ----- */
 .rules-list{
   margin:4px 0 0;
@@ -977,10 +979,6 @@ textarea {
     animation: status-pulse 1.5s infinite;
 }
 
-/* Colores del punto */
-.disponible::before { background-color: #22c55e; box-shadow: 0 0 8px #22c55e; }
-.no_disponible::before { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; }
-.ocupada::before { background-color: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
 
 @keyframes status-pulse {
     0% { transform: scale(1); opacity: 1; }
@@ -1042,15 +1040,6 @@ textarea {
   box-shadow: 0 0 5px rgba(148, 163, 184, 0.5);
 }
 
-/* Ocupada */
-.card-status-ocupada {
-  background: rgba(254, 226, 226, 0.85);
-  color: #991b1b;
-}
-.card-status-ocupada::before {
-  background-color: #ef4444;
-  box-shadow: 0 0 8px #ef4444;
-}
 
 /* --- COLORES Y BRILLOS --- */
 
@@ -1072,16 +1061,6 @@ textarea {
 .card-status-no-disponible::before {
   background-color: #94a3b8; /* Gris */
   box-shadow: 0 0 5px rgba(148, 163, 184, 0.5);
-}
-
-/* Ocupada */
-.card-status-ocupada {
-  background: rgba(254, 226, 226, 0.85); /* Rojo bajito */
-  color: #991b1b;
-}
-.card-status-ocupada::before {
-  background-color: #ef4444;
-  box-shadow: 0 0 8px #ef4444;
 }
 
 

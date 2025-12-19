@@ -272,7 +272,7 @@ $indicaciones_items = split_items($prop['indicaciones'] ?? '');
 
     <!-- Servicios (columna derecha) -->
     <aside class="property-card property-services-card">
-      <h2 class="section-title">Servicios</h2>
+      <h2 class="section-title">Contamos con...</h2>
 
       <?php if ($servicios_items): ?>
         <div class="services-list">
@@ -287,6 +287,7 @@ $indicaciones_items = split_items($prop['indicaciones'] ?? '');
           Agrega los servicios en el panel de administración para mostrarlos aquí.
         </p>
       <?php endif; ?>
+      <p class="aviso-temporada">"Precios cambian en temporada alta"</p>
     </aside>
 
     <!-- Indicaciones y reglas (debajo de descripción) -->

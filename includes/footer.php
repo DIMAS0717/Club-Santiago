@@ -239,23 +239,55 @@
 
 /* Links */
 .ve-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .ve-links li {
-  margin-bottom: 4px;
+    margin-bottom: 8px; /* Un poco más de espacio para que luzcan las flechas */
 }
 
 .ve-links a {
-  text-decoration: none;
-  color: var(--ve-text-muted);
-  font-size: 14px;
+    text-decoration: none !important; /* Quitamos el subrayado */
+    color: var(--ve-text-muted);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre flecha y texto */
+    transition: all 0.3s ease;
 }
 
-.ve-links a:hover {
-  text-decoration: underline;
+/* Añadir el símbolo › estético */
+.ve-links a::before {
+    content: '›';
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+/* --- COLORES DINÁMICOS AL PASAR EL MOUSE --- */
+/* Usamos el mismo orden que en el Header */
+
+/* 1. Inicio - Azul */
+.ve-links li:nth-child(1) a:hover { color: #0056b3; }
+/* 2. Propiedades en renta - Naranja */
+.ve-links li:nth-child(2) a:hover { color: #ff8c00; }
+/* 3. Propiedades en venta - Rojo */
+.ve-links li:nth-child(3) a:hover { color: #e60000; }
+/* 4. Nuestras villas - Amarillo */
+.ve-links li:nth-child(4) a:hover { color: #ffcc00; }
+/* 5. Alrededores - Celeste */
+.ve-links li:nth-child(5) a:hover { color: #00bcd4; }
+/* 6. Contáctanos - Menta */
+.ve-links li:nth-child(6) a:hover { color: #b8f0e6; }
+
+/* Animación de la flecha en Hover */
+.ve-links a:hover::before {
+    opacity: 1;
+    transform: translateX(4px);
+    color: inherit; /* Toma el color de marca asignado arriba */
 }
 
 /* Redes */

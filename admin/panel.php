@@ -347,7 +347,7 @@ $stmt->bind_param(
     $prop_id = (int)($_POST['property_id'] ?? 0);
     $fecha_inicio = $_POST['fecha_inicio'] ?? '';
     $fecha_fin    = $_POST['fecha_fin'] ?? '';
-    $estado_cal   = $_POST['estado'] ?? 'ocupada';
+    $estado_cal   = $_POST['estado'] ?? '';
 
     if ($prop_id > 0 && $fecha_inicio && $fecha_fin) {
       $stmt = $conn->prepare("INSERT INTO property_calendar
@@ -1141,7 +1141,6 @@ if ($view === 'casas' && isset($_GET['edit'])) {
                         <label>Estado de la casa en ese periodo</label>
                         <select name="estado"
                                 style="width:100%;padding:10px;border-radius:12px;border:1px solid #ddd;">
-                            <option value="ocupada">Ocupada (rentada)</option>
                             <option value="no_disponible">No disponible</option>
                         </select>
                     </div>

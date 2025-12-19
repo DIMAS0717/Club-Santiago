@@ -110,9 +110,9 @@
 .header-nav a:nth-child(5).active { color: #00bcd4 !important; font-weight: 700; }
 
 /* 6. Contacto - MENTA */
-.header-nav a:nth-child(6):hover { color: #40e0d0; }
-.header-nav a:nth-child(6):hover::after { width: 100%; background-color: #40e0d0; }
-.header-nav a:nth-child(6).active { color: #40e0d0 !important; font-weight: 700; }
+.header-nav a:nth-child(6):hover { color: #b8f0e6; }
+.header-nav a:nth-child(6):hover::after { width: 100%; background-color: #b8f0e6; }
+.header-nav a:nth-child(6).active { color: #b8f0e6 !important; font-weight: 700; }
 
 /* --- TRUCO CLAVE: Quitar línea si está activo --- */
 /* Esto asegura que aunque pases el ratón sobre el que ya está activo, no salga la línea */
