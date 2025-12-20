@@ -88,10 +88,7 @@ $res = $conn->query($sql);
             }
 
             // Elegimos etiqueta y clase según el estado final
-            if ($estado === 'ocupada') {
-              $estado_label = 'Ocupada';
-              $estado_class = 'card-status-ocupada';
-            } elseif ($estado === 'no_disponible') {
+           if ($estado === 'no_disponible') {
               $estado_label = 'No disponible';
               $estado_class = 'card-status-no-disponible';
             } else {
@@ -114,10 +111,8 @@ $res = $conn->query($sql);
                  class="img-back-pool">
         <?php endif; ?>
 
-        <div class="btn-view-pool" title="Ver alberca">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
-                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-            </svg>
+        <div class="btn-view-pool" title="Ver más fotos">
+          <span class="arrow-indicator">›</span>
         </div>
 
         <span class="card-status-chip <?php echo $estado_class; ?>">
