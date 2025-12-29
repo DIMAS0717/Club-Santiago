@@ -1,52 +1,135 @@
 <?php
 require __DIR__ . '/includes/db.php';
+// =========================Buscador de propiedades=========================
+$entrada   = $_GET['entrada']  ?? '';
+$salida    = $_GET['salida']   ?? '';
+$personas  = $_GET['personas'] ?? '';
+$tipo_playa = $_GET['tipo_playa'] ?? [];
+$filtros   = $_GET['filtros'] ?? [];
+$estado = $_GET['estado'] ?? '';
+$hay_fechas = (!empty($entrada) && !empty($salida));
 
 // =========================
 // 1) Consulta de propiedades
 // =========================
 $sql = "
-  SELECT 
-    p.id,
-    p.nombre,
-    p.capacidad,
-    p.distancia_mar,
-    p.descripcion_corta,
-    p.foto_principal,
-    p.foto_alberca,
-    p.categoria,
-    p.estado_base,
-    CASE
-      -- PRIORIDAD 1: rango en calendario marcado como NO DISPONIBLE
-      WHEN EXISTS (
-        SELECT 1
-        FROM property_calendar pc
-        WHERE pc.property_id = p.id
-          AND pc.estado = 'no_disponible'
-          AND CURDATE() BETWEEN pc.fecha_inicio AND pc.fecha_fin
-      ) THEN 'no_disponible'
+SELECT 
+  p.id,
+  p.nombre,
+  p.capacidad,
+  p.distancia_mar,
+  p.descripcion_corta,
+  p.foto_principal,
+  p.foto_alberca,
+  p.categoria,
+  p.estado_base,
 
-      -- PRIORIDAD 2: rango en calendario marcado como OCUPADA
-      WHEN EXISTS (
-        SELECT 1
-        FROM property_calendar pc
-        WHERE pc.property_id = p.id
-          AND pc.estado = 'ocupada'
-          AND CURDATE() BETWEEN pc.fecha_inicio AND pc.fecha_fin
-      ) THEN 'ocupada'
+  CASE
+    WHEN EXISTS (
+      SELECT 1
+      FROM property_calendar pc
+      WHERE pc.property_id = p.id
+        AND pc.estado = 'no_disponible'
+        AND CURDATE() BETWEEN pc.fecha_inicio AND pc.fecha_fin
+    ) THEN 'no_disponible'
 
-      -- PRIORIDAD 3: estado_base en la tabla properties
-      WHEN p.estado_base = 'no_disponible' THEN 'no_disponible'
+    WHEN EXISTS (
+      SELECT 1
+      FROM property_calendar pc
+      WHERE pc.property_id = p.id
+        AND pc.estado = 'ocupada'
+        AND CURDATE() BETWEEN pc.fecha_inicio AND pc.fecha_fin
+    ) THEN 'ocupada'
 
-      -- PRIORIDAD 4: por defecto disponible
-      ELSE 'disponible'
-    END AS estado_actual
-  FROM properties p
-  WHERE p.categoria = 'renta'
-  ORDER BY p.created_at DESC
+    WHEN p.estado_base = 'no_disponible' THEN 'no_disponible'
+    ELSE 'disponible'
+  END AS estado_actual
+
+FROM properties p
+WHERE p.categoria = 'renta'
 ";
+//filtro para serca de playa o pie de playa
+if (!empty($tipo_playa)) {
 
+  // Solo pie de playa
+  if (in_array('pie', $tipo_playa) && !in_array('cerca', $tipo_playa)) {
+    $sql .= " AND p.es_pie_playa = 1 ";
+  }
+
+  // Solo cerca de playa
+  if (in_array('cerca', $tipo_playa) && !in_array('pie', $tipo_playa)) {
+    $sql .= " AND p.es_pie_playa = 0 ";
+  }
+
+}
+
+//filtro para numero de personas
+if ($personas) {
+  if ($personas === '20') {
+    $sql .= " AND p.capacidad >= 20 ";
+  } else {
+    $sql .= " AND p.capacidad >= " . intval($personas);
+  }
+}
+/* =====================================
+   FILTRO RADIO: DISPONIBLE / NO DISPONIBLE
+   ===================================== */
+
+if ($estado && !$hay_fechas) {
+
+  // SOLO DISPONIBLES (HOY)
+  if ($estado === 'disponible') {
+    $sql .= " AND NOT EXISTS (
+      SELECT 1
+      FROM property_calendar pc
+      WHERE pc.property_id = p.id
+        AND pc.estado IN ('ocupada','no_disponible')
+        AND CURDATE() BETWEEN pc.fecha_inicio AND pc.fecha_fin
+    )";
+  }
+
+  // SOLO NO DISPONIBLES (HOY)
+  if ($estado === 'no_disponible') {
+    $sql .= " AND EXISTS (
+      SELECT 1
+      FROM property_calendar pc
+      WHERE pc.property_id = p.id
+        AND pc.estado IN ('ocupada','no_disponible')
+        AND CURDATE() BETWEEN pc.fecha_inicio AND pc.fecha_fin
+    )";
+  }
+}
+/* =====================================
+   FILTRO OBLIGATORIO POR FECHAS
+   ===================================== */
+
+if ($hay_fechas) {
+
+  // Si NO pidió explícitamente "no disponibles"
+  if ($estado !== 'no_disponible') {
+
+    $sql .= " AND NOT EXISTS (
+      SELECT 1
+      FROM property_calendar pc
+      WHERE pc.property_id = p.id
+        AND pc.estado IN ('ocupada','no_disponible')
+        AND pc.fecha_inicio <= '$salida'
+        AND pc.fecha_fin >= '$entrada'
+    )";
+  }
+
+}
+
+
+
+if ($personas) {
+    $sql .= " ORDER BY p.capacidad ASC ";
+} else {
+    $sql .= " ORDER BY p.created_at DESC ";
+}
 $res = $conn->query($sql);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -68,6 +151,81 @@ $res = $conn->query($sql);
     <p class="muted-text">Casas disponibles para renta en Club Santiago.</p>
   </section>
 
+<!--Buscador(Filtro para mis casas)================-->
+<form class="booking-bar" method="GET">
+
+  <!-- Entrada -->
+  <div class="booking-field">
+    <span class="booking-label">Registro de entrada</span>
+    <input type="date" name="entrada" value="<?= $entrada ?>">
+  </div>
+
+  <!-- Salida -->
+  <div class="booking-field">
+    <span class="booking-label">Registrar la salida</span>
+    <input type="date" name="salida" value="<?= $salida ?>">
+  </div>
+
+  <!-- Personas -->
+  <div class="booking-field">
+  <span class="booking-label">huéspedes</span>
+  <div class="booking-input">
+    <select name="personas">
+      <option value="">Seleccionar</option>
+      <option value="10">10 personas</option>
+      <option value="11">11 personas</option>
+      <option value="12">12 personas</option>
+      <option value="20">20+ personas</option>
+    </select>
+  </div>
+</div>
+
+
+  <!-- Pie de playa -->
+<div class="booking-field booking-dropdown">
+  <span class="booking-label">Tipo</span>
+
+  <div class="booking-input booking-dropdown-toggle"
+       id="tipoToggle"
+       role="button"
+       tabindex="0">
+
+    <span id="tipoTexto">Seleccionar</span>
+
+    <svg width="16" height="16" viewBox="0 0 20 20">
+      <path d="M5 7l5 5 5-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="booking-dropdown-menu" id="tipoMenu">
+    <label>
+      <input type="checkbox" name="tipo_playa[]" value="pie">
+        Casa a pie de playa
+    </label>
+    <label>
+      <input type="checkbox" name="tipo_playa[]" value="cerca">
+        Cerca de la playa
+    </label>
+    <label>
+      <input type="radio" name="estado" value="disponible">
+      Casas disponibles
+    </label>
+
+    <label>
+      <input type="radio" name="estado" value="no_disponible">
+      Casas no disponibles
+    </label>
+  </div>
+</div>
+  <!-- Botón -->
+  <button type="submit" class="booking-btn">
+    Buscar
+  </button>
+</form>
+<!--Seccion para mis cartas de propiedades============================================-->
   <section class="section">
     <?php if ($res && $res->num_rows): ?>
       <div class="home-property-grid">
@@ -110,7 +268,7 @@ $res = $conn->query($sql);
             <img src="<?php echo htmlspecialchars($p['foto_alberca']); ?>" 
                  class="img-back-pool">
         <?php endif; ?>
-
+        
         <div class="btn-view-pool" title="Ver más fotos">
           <span class="arrow-indicator">›</span>
         </div>
@@ -168,5 +326,43 @@ $res = $conn->query($sql);
 <?php include __DIR__ . '/includes/footer.php';?>
 
 <script src="assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const toggle = document.getElementById('tipoToggle');
+  const menu = document.getElementById('tipoMenu');
+  const texto = document.getElementById('tipoTexto');
+
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    menu.classList.toggle('show');
+  });
+
+  document.addEventListener('click', () => {
+    menu.classList.remove('show');
+  });
+
+  menu.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
+  menu.querySelectorAll('input').forEach(input => {
+    input.addEventListener('change', () => {
+      const seleccionados = [...menu.querySelectorAll('input:checked')]
+        .map(i => i.parentNode.textContent.trim());
+
+      texto.textContent = seleccionados.length
+        ? seleccionados.join(', ')
+        : 'Seleccionar';
+    });
+  });
+
+});
+</script>
+
+
 </body>
 </html>

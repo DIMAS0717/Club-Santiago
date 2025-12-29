@@ -111,6 +111,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnNext = document.querySelector('.lightbox-next');
   const counter = document.getElementById('lightbox-counter');
 
+  if (!lightbox || !lightboxImg || !btnPrev || !btnNext || !counter) {
+    return; // ⛔ No existe lightbox en esta página
+  }
+
   const images = [
     ...document.querySelectorAll('.gallery-img'),
     ...document.querySelectorAll('.slider-img')
@@ -155,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener('keydown', e => {
     if (e.key === "Escape") lightbox.classList.remove('active');
   });
-
 });
 
 // Esperar a que el documento esté cargado

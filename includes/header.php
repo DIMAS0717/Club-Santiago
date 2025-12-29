@@ -13,18 +13,12 @@
   //NECESITAMOS OBTENER EL ARCHIVO EN EL QUE ESTAMOS PARA DIBUJAR NUESTRO ENLACE CON CSS
   $current_page = basename($_SERVER['PHP_SELF']); 
 ?>
-
 <nav class="header-nav">
     <a href="index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Inicio</a>
-    
     <a href="renta.php" class="<?php echo ($current_page == 'renta.php') ? 'active' : ''; ?>">Propiedades en renta</a>
-    
     <a href="venta.php" class="<?php echo ($current_page == 'venta.php') ? 'active' : ''; ?>">Propiedades en venta</a>
-    
     <a href="villas.php" class="<?php echo ($current_page == 'villas.php') ? 'active' : ''; ?>">Nuestras villas</a>
-    
     <a href="alrededores.php" class="<?php echo ($current_page == 'alrededores.php') ? 'active' : ''; ?>">Alrededores</a>
-    
     <a href="contacto.php" class="<?php echo ($current_page == 'contacto.php') ? 'active' : ''; ?>">Contáctanos</a>
 </nav>
 
