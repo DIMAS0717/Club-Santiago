@@ -975,9 +975,9 @@ textarea {
 /* Imagen principal de casa en el INICIO (tarjeta de listado) */
 .home-property-img{
   width: 100%;
-  max-height: 320px;        /* aquí controlas qué tan alta la quieres */
+  max-height: 300px;        /* aquí controlas qué tan alta la quieres */
   border-radius: 18px 18px 0 0;
-  object-fit: cover;        /* recorta la imagen sin deformarla */
+  object-fit: cover;
   display: block;
 }
 

@@ -1,204 +1,397 @@
 /* ===================== ALREDEDORES ===================== */
 
+/* ===================== SECCIÓN HERO CON FONDO ===================== */
+body {
+  margin: 113px;
+  padding: 0;
 
-/* ===================== TÍTULO ALREDEDORES ===================== */
-
-.around-header {
-  text-align: center;
-  padding-top: 40px;
-  margin-bottom: 30px;
+}
+.around-hero-container {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-image: url('./images/fondoalrededores.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Efecto parallax opcional */
+  min-height: 500px; /* Asegura una altura mínima */
+  height: 60vh; /* O usa viewport height para que sea responsive */
+  padding: 0 20px 100px;
+  margin-top: 0 !important;
+  box-sizing: border-box;
 }
 
-.around-title-wrap {
+/* Capa oscura para mejor contraste */
+.around-hero-container::before {
+ content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+
+/* Asegurar que el contenido esté sobre la capa */
+.around-hero-container > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===================== TÍTULO ALREDEDORES (DENTRO DEL FONDO) ===================== */
+
+/* AJUSTAR EL TÍTULO PARA COMPENSAR LA FALTA DE PADDING ARRIBA */
+.around-hero-container .around-header {
+  text-align: center;
+  padding-top: 60px; /* AUMENTAR ESTO para compensar */
+  margin-bottom: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.around-hero-container .around-title-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 50px;
+  margin-bottom: 15px;
 }
 
-.around-title {
-  font-size: 3.6rem;
+.around-hero-container .around-title {
+  font-size: 4rem;
   font-weight: 800;
-  color: #173457; /* adaptado al color del sitio */
-  text-shadow: 0 4px 14px rgba(0,0,0,0.15);
-  margin-top: -30px;
+  color: #ffffff;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  margin-top: 0;
+  letter-spacing: 1px;
 }
 
-.around-title-deco {
-  width: 85px;
-  margin-top: -25px;
-  opacity: 0.9;
+.around-hero-container .around-title-deco {
+  width: 100px;
+  height: auto;
+  opacity: 0.95;
+  filter: brightness(1.3) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
-.around-title-underline {
+.around-hero-container .around-title-underline {
   display: block;
-  width: 333px;
-  height: 6px;
-  background: #173457;
-  margin: -20px auto 28px auto;
+  width: 400px;
+  height: 8px;
+  background: linear-gradient(90deg, #ffffff, #e0e0e0);
+  margin: 0 auto 30px auto;
   border-radius: 4px;
   opacity: 0.9;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-.around-subtitle {
-  max-width: 640px;
+.around-hero-container .around-subtitle {
+  max-width: 700px;
   margin: 0 auto;
-  color: #64748b;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  color: #ffffff;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-weight: 400;
 }
 
+/* ===================== MAPA (DENTRO DEL FONDO) ===================== */
 
-/* MAPA */
-
-.around-map-section {
+.around-hero-container .around-map-section {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.around-map-card {
+.around-hero-container .around-map-card {
   width: 100%;
-  max-width: 1050px;
+  max-width: 1100px;
   background: #ffffff;
-  border-radius: 28px;
-  padding: 24px 28px;
+  border-radius: 24px;
+  padding: 30px 35px;
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
-  gap: 24px;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  gap: 30px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.around-map-info {
+/* Asegurar que el fondo blanco del mapa se vea bien sobre la imagen */
+.around-hero-container .around-map-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 10px 0;
 }
 
-.around-map-title {
-  font-size: 1.35rem;
-  font-weight: 600;
-  margin-bottom: 6px;
+.around-hero-container .around-map-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #173457;
+  letter-spacing: 0.5px;
 }
 
-.around-map-title span {
-  font-size: 0.95rem;
+.around-hero-container .around-map-title span {
+  font-size: 1rem;
   color: #64748b;
+  font-weight: 500;
 }
 
-.around-map-divider {
-  width: 300px;              /* largo de la línea */
-  height: 1px;              /* grosor */
-  background: #0f172a;      /* color del título */
+.around-hero-container .around-map-divider {
+  width: 320px;
+  height: 2px;
+  background: linear-gradient(90deg, #0f172a, #64748b);
   border-radius: 2px;
-  margin: 10px 0 18px 0;    /* espacio arriba y abajo */
+  margin: 12px 0 22px 0;
 }
 
-
-.around-map-list {
+.around-hero-container .around-map-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.around-map-list li {
+.around-hero-container .around-map-list li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 15px;
+  margin-bottom: 18px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-.around-map-icon {
-  width: 20px;
-  height: 20px;
-  color: #0f172a; /* CAMBIA AQUÍ EL COLOR */
-  flex-shrink: 0;
+.around-hero-container .around-map-list li:hover {
+  background-color: rgba(14, 165, 233, 0.05);
 }
 
-.around-map-time {
-  margin-left: auto;
-  font-size: 0.85rem;
+.around-hero-container .around-map-icon {
+  width: 22px;
+  height: 22px;
   color: #0f172a;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
 }
 
-.around-map-image img {
+.around-hero-container .around-map-time {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: #0f172a;
+  font-weight: 600;
+  background: rgba(14, 165, 233, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.around-hero-container .around-map-image img {
   width: 100%;
   height: 100%;
-  border-radius: 18px;
+  border-radius: 16px;
   object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
-.around-map-list li:hover .around-map-icon {
+
+.around-hero-container .around-map-list li:hover .around-map-icon {
   color: #0ea5e9;
+  transform: scale(1.1);
 }
+/* ===================== MODAL DEL MAPA (ARREGLAR BUG) ===================== */
 
-/* ==== MODAL FULLSCREEN PARA MAPA ==== */
-
-.map-modal {
-  display: none; 
+#mapModal {
+  display: none;
   position: fixed;
-  z-index: 9999;
-  padding-top: 50px;
-  left: 0;
+  z-index: 99999; /* AUMENTAR z-index */
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background: rgba(0,0,0,0.85);
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 0; /* ELIMINAR padding-top */
+  margin: 0;
+  animation: fadeIn 0.3s ease;
 }
 
 .map-modal-content {
-  margin: auto;
   display: block;
-  width: 90%;
-  max-width: 900px;
+  margin: 50px auto; /* Centrar vertical y horizontalmente */
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  animation: zoomIn 0.3s ease;
 }
 
 .map-close {
-  position: absolute;
-  top: 15px;
-  right: 30px;
+  position: fixed; /* Cambiar de absolute a fixed */
+  top: 20px;
+  right: 40px;
   color: white;
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bold;
   cursor: pointer;
+  z-index: 100000; /* Más alto que el modal */
   transition: 0.3s;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-/*Titulos(Deportes,EXP recom, Restaurantes)*/
-.around-section-title {
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    font-size: 1.8rem; /* Tamaño equilibrado, no más grande que el principal */
-    font-weight: 600;
-    color: #173457;    /* El azul oscuro de tu marca */
-    margin-top: 50px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    position: relative;
+.map-close:hover {
+  color: #f0f0f0;
+  transform: scale(1.1);
 }
 
-/* La línea decorativa con el estilo del header */
-.around-section-title::after {
-    content: "";
-    display: block;
-    width: 60px;       /* Ancho de la línea */
-    height: 4px;       /* Grosor de la línea */
-    
-    /* Usamos el degradado de tu header con un toque de transparencia (0.9) */
-    background: linear-gradient(90deg, rgba(190, 233, 158, 0.9), rgba(23, 52, 87, 0.9));
-    
-    /* Opcional: efecto de desenfoque si quieres que sea igual al header.scrolled */
-    backdrop-filter: blur(5px);
-    
-    margin: 12px auto 0; /* Centra la línea */
-    border-radius: 10px; /* Bordes redondeados para suavizar */
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
+/* Asegurar que no haya interferencias del fondo */
+.around-hero-container .map-modal {
+  display: none !important; /* El modal NO debe estar dentro del hero container */
+}
+
+/* El modal debe estar FUERA del .around-hero-container en el HTML */
+
+/* ===================== SECCIÓN DE ACTIVIDADES (FUERA DEL FONDO - FONDO BLANCO) ===================== */
+
+/* Contenedor para sección de actividades */
+.around-activities-container {
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 60px 20px;
+  width: 100%;
+}
+
+/* Títulos de secciones de actividades */
+.around-activities-container .around-section-title {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #173457;
+  margin-top: 0; /* Sin margen superior ya que está dentro de su contenedor */
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.around-activities-container .around-section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(190, 233, 158, 0.9), rgba(23, 52, 87, 0.9));
+  backdrop-filter: blur(5px);
+  margin: 12px auto 0;
+  border-radius: 10px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 1024px) {
+  .around-hero-container .around-title {
+    font-size: 3.2rem;
+  }
+  
+  .around-hero-container .around-map-card {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .around-hero-container {
+    padding: 60px 15px 80px;
+  }
+  
+  .around-hero-container .around-title {
+    font-size: 2.8rem;
+  }
+  
+  .around-hero-container .around-title-wrap {
+    gap: 30px;
+  }
+  
+  .around-hero-container .around-title-deco {
+    width: 70px;
+  }
+  
+  .around-hero-container .around-title-underline {
+    width: 300px;
+  }
+  
+  .around-hero-container .around-subtitle {
+    font-size: 1.1rem;
+    padding: 0 20px;
+  }
+  
+  .around-hero-container .around-map-card {
+    padding: 25px;
+  }
+  
+  .around-activities-container {
+    padding: 40px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .around-hero-container {
+    padding: 40px 10px 60px;
+  }
+  
+  .around-hero-container .around-title {
+    font-size: 2.2rem;
+  }
+  
+  .around-hero-container .around-title-wrap {
+    gap: 20px;
+  }
+  
+  .around-hero-container .around-title-deco {
+    width: 50px;
+  }
+  
+  .around-hero-container .around-title-underline {
+    width: 200px;
+    height: 6px;
+  }
+  
+  .around-hero-container .around-subtitle {
+    font-size: 1rem;
+  }
+  
+  .around-hero-container .around-map-divider {
+    width: 100%;
+  }
+  
+  .around-activities-container {
+    padding: 30px 10px;
+  }
+}
 /* ACTIVIDADES DESTACADAS */
 
 /* ==== FONDOS PARA CADA ACTIVIDAD ==== */
@@ -220,7 +413,7 @@
 
 .section-header {
     text-align: center;
-    margin-bottom: 45px;
+    margin-bottom: 70px;
 }
 
 .section-header span {

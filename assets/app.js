@@ -186,3 +186,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+// Asegúrate de que este JavaScript esté en tu archivo
+document.addEventListener('DOMContentLoaded', function() {
+  // Obtener elementos
+  const modal = document.getElementById("mapModal");
+  const modalImg = document.getElementById("mapModalImg");
+  const openMapBtn = document.getElementById("openMap");
+  const closeBtn = document.querySelector(".map-close");
+  
+  // Si existe el botón para abrir el mapa
+  if (openMapBtn) {
+    openMapBtn.onclick = function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      modalImg.alt = this.alt;
+      // Prevenir scroll del body
+      document.body.style.overflow = "hidden";
+    }
+  }
+  
+  // Cerrar al hacer click en la X
+  if (closeBtn) {
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  }
+  
+  // Cerrar al hacer click fuera de la imagen
+  modal.onclick = function(event) {
+    if (event.target === modal || event.target.classList.contains('map-modal-content')) {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  }
+  
+  // Cerrar con tecla ESC
+  document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape" && modal.style.display === "block") {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+});
