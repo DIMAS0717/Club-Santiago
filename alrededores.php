@@ -134,7 +134,7 @@ require __DIR__ . '/includes/db.php';
     <span class="map-close">&times;</span>
     <img class="map-modal-content" id="mapModalImg">
   </div>
-
+<div class="section-spacer" style="height: 300px;"></div>
 
 <!--Deportes -->
 <section class="around-activities-section">
