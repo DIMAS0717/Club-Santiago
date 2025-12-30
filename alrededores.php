@@ -248,38 +248,38 @@ require __DIR__ . '/includes/db.php';
   </div>
 </section>
 
-<section class="gallery-section">
-  <div class="gallery-header">
-    <h2>Galería de Club Santiago</h2>
-    <p>Un vistazo a lo que te espera en este paraíso frente al mar</p>
-  </div>
+  <section class="gallery-section">
+      <div class="gallery-header">
+        <h2>Galería de Club Santiago</h2>
+        <p>Un vistazo a lo que te espera en este paraíso frente al mar</p>
+      </div>
 
-  <div class="gallery-grid">
-    <!-- Imagen grande -->
-    <div class="gallery-item large" style="background-image:url('assets/images/ciclismo.jpg')">
-      <span>Playa La Boquita</span>
+      <div class="gallery-grid">
+        <!-- Imagen grande -->
+      <div class="gallery-item large" style="background-image:url('assets/images/ciclismo.jpg')">
+        <span>Playa La Boquita</span>
+      </div>
+
+        <!-- Imagen mediana -->
+      <div class="gallery-item medium" style="background-image:url('assets/images/golf.jpg')">
+        <span>Campo de Golf</span>
+      </div>
+
+        <!-- Imagen mediana -->
+      <div class="gallery-item medium" style="background-image:url('assets/images/playa.jpg')">
+        <span>Atardeceres Mágicos</span>
+      </div>
+
+        <!-- Imagen horizontal -->
+      <div class="gallery-item wide" style="background-image:url('assets/images/senderismo.png')">
+        <span>Marina</span>
+      </div>
     </div>
 
-    <!-- Imagen mediana -->
-    <div class="gallery-item medium" style="background-image:url('assets/images/golf.jpg')">
-      <span>Campo de Golf</span>
+    <div class="gallery-cta">
+      <a href="#" class="btn-gallery">Ver galería completa</a>
     </div>
-
-    <!-- Imagen mediana -->
-    <div class="gallery-item medium" style="background-image:url('assets/images/playa.jpg')">
-      <span>Atardeceres Mágicos</span>
-    </div>
-
-    <!-- Imagen horizontal -->
-    <div class="gallery-item wide" style="background-image:url('assets/images/senderismo.png')">
-      <span>Marina</span>
-    </div>
-  </div>
-
-  <div class="gallery-cta">
-    <a href="#" class="btn-gallery">Ver galería completa</a>
-  </div>
-</section>
+  </section>
 
 
 </main>

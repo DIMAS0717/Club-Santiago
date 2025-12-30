@@ -1,11 +1,7 @@
 /* ===================== ALREDEDORES ===================== */
 
 /* ===================== SECCIÓN HERO CON FONDO ===================== */
-body {
-  margin: 113px;
-  padding: 0;
 
-}
 .around-hero-container {
   position: relative;
   width: 100vw;
@@ -18,12 +14,13 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed; /* Efecto parallax opcional */
-  min-height: 500px; /* Asegura una altura mínima */
+  min-height: 600px; /* Asegura una altura mínima */
   height: 60vh; /* O usa viewport height para que sea responsive */
   padding: 0 20px 580px;
-  margin-top: 0 !important;
+  margin-top: -46px; /* Compensar el padding del header */;
   box-sizing: border-box;
 }
+
 
 /* Capa oscura para mejor contraste */
 .around-hero-container::before {
@@ -279,27 +276,27 @@ body {
 /* ===================== SECCIÓN DE ACTIVIDADES (FUERA DEL FONDO - FONDO BLANCO) ===================== */
 
 /* Contenedor para sección de actividades */
-.around-activities-container {
+.around-activities-section {
   background-color: #ffffff; /* Fondo blanco */
   padding: 60px 20px;
   width: 100%;
 }
 
 /* Títulos de secciones de actividades */
-.around-activities-container .around-section-title {
+.around-activities-section .around-section-title {
   font-family: 'Montserrat', sans-serif;
   text-align: center;
   font-size: 1.8rem;
   font-weight: 600;
   color: #173457;
-  margin-top: 0; /* Sin margen superior ya que está dentro de su contenedor */
+  margin-top: 0;
   margin-bottom: 40px;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
 }
 
-.around-activities-container .around-section-title::after {
+.around-activities-section .around-section-title::after {
   content: "";
   display: block;
   width: 60px;
@@ -309,7 +306,6 @@ body {
   margin: 12px auto 0;
   border-radius: 10px;
 }
-
 /* ===================== RESPONSIVE ===================== */
 
 @media (max-width: 1024px) {
